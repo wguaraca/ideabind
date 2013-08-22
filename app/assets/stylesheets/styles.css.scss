@@ -1,0 +1,31 @@
+/*This is the way you could change the font */
+/*$baseFontFamily: Oxygen; 
+@import url(http://fonts.googleapis.com/css?family=Oxygen); */
+
+$btnPrimaryBackground: green;
+$navbarBackgroundHighlight: white;
+$navbarBackground: white;
+
+@import 'bootstrap';
+
+body {
+	padding-top: 60px;
+}
+
+@import 'bootstrap-responsive';
+
+/* The following gets rid of the shadow of the line on the nav bar*/
+.navbar-inner {
+	@include box-shadow (none !important);
+	border: 0; 
+}
+
+.footer {
+
+	margin-top: 50px;
+	color: $grayLight;
+	a {
+		color: $gray;
+	}
+
+}
