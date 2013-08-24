@@ -2,18 +2,18 @@
 	<h1>Welcome! This will be our users portfolio </h1>
 <% else %>
 
-<div class="hero-unit">
+<div class= "span12 pagination-centered">
+	<div class="hero-unit">
 
-	<h1>Welcome to CreateNovation</h1>
-	<p>
-		Build your Portfolio, one challenge at a time: 
-		<%= link_to"Browse Challenges", "#" %>
-
-	</p>
-
-	<p>
-		<%= link_to"Sign up Now", new_user_registration_path, class: "btn btn-primary btn-large" %>
-	</p>
+		<h1>Welcome to CreateNovation</h1>
+		<p>
+			Build your Portfolio, one challenge at a time: 
+			<%= link_to"Browse Challenges", "#" %>
+		</p>
+		<p>
+			<%= link_to"Sign up Now", new_user_registration_path, class: "btn btn-primary btn-large " %>
+		</p>
+	</div>
 </div>
 
 <% end %>
