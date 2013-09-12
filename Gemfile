@@ -3,9 +3,14 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 gem 'rails', '4.0.0'
+gem 'faker', '1.1.2'
+gem 'will_paginate', '3.0.4'
+# gem 'simple_form'
+gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
+
 gem 'jquery-rails'
 gem 'devise'
-gem 'simple_form'
+
 
 gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
