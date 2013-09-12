@@ -1,9 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+ruby '2.0.0'
+
+gem 'rails', '4.0.0'
 gem 'jquery-rails'
 gem 'devise'
 gem 'simple_form'
+
+gem 'faker', '1.1.2'
+gem 'will_paginate', '3.0.4'
 
 gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
@@ -25,9 +30,9 @@ group :test do
 end
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails',   '4.0.0'
+  gem 'coffee-rails', '4.0.0'
+  gem 'uglifier', 		'2.1.1'
   gem 'bootstrap-sass', '~> 2.3.2.1'
   
 

@@ -67,4 +67,6 @@ Omrails::Application.configure do
 
   #In production, :host should be set to the actual host of the application
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  config.force_ssl = true
 end

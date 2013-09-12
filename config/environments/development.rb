@@ -22,6 +22,7 @@ Omrails::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
+  # EDDERIC: MIGHT WANNA COME BACK TO THIS
   # Raise exception on mass assignment protection for Active Record models
   config.active_record.mass_assignment_sanitizer = :strict
 
@@ -36,4 +37,6 @@ Omrails::Application.configure do
   config.assets.debug = true
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  config.force_ssl = true
 end
