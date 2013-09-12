@@ -16,6 +16,7 @@ group :development, :test do
 	gem 'sqlite3', '1.3.7'
 	gem 'rspec-rails', '2.13.1' # for testing.
 	gem 'bcrypt-ruby', '3.1.1'  # for secure passwords.
+	gem 'debugger'
 end
 
 group :test do
