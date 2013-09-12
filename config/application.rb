@@ -52,7 +52,7 @@ module Omrails
     # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
     # parameters by using an attr_accessible or attr_protected declaration.
     
-    # Edderic: Might want to get back to this.
+    # EDDERIC: MIGHT WANNA COME BACK TO THIS
     # config.active_record.whitelist_attributes = true
 
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
