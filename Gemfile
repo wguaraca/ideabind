@@ -10,7 +10,7 @@ gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 
 gem 'jquery-rails'
 gem 'devise'
-
+gem 'protected_attributes'
 
 gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
