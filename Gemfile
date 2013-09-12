@@ -15,19 +15,20 @@ end
 group :development, :test do 
 	gem 'sqlite3', '1.3.7'
 	gem 'rspec-rails', '2.13.1' # for testing.
-	gem 'bcrypt-ruby', '3.0.1'  # for secure passwords.
+	gem 'bcrypt-ruby', '3.1.1'  # for secure passwords.
 end
 
 group :test do
 	gem 'selenium-webdriver', '2.35.1'
 	gem 'capybara', '2.1.0'
+end
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass', '~> 2.3.2.1'
-  '
+  
 
 end
 
