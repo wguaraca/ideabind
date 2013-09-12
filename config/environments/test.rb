@@ -33,6 +33,8 @@ Omrails::Application.configure do
   # EDDERIC: MIGHT WANNA COME BACK TO THIS
   # Raise exception on mass assignment protection for Active Record models
   # config.active_record.mass_assignment_sanitizer = :strict
+  config.eager_load = false
+
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr

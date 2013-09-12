@@ -69,4 +69,6 @@ Omrails::Application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   config.force_ssl = true
+
+  config.eager_load = true
 end
