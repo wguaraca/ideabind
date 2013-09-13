@@ -11,15 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130913154119) do
+ActiveRecord::Schema.define(version: 20130913172932) do
 
   create_table "pins", force: true do |t|
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "title"
+    t.datetime "start_date"
+    t.datetime "end_date"
   end
 
+  add_index "pins", ["end_date"], name: "index_pins_on_end_date"
   add_index "pins", ["user_id", "created_at"], name: "index_pins_on_user_id_and_created_at"
   add_index "pins", ["user_id"], name: "index_pins_on_user_id"
 
