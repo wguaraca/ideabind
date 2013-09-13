@@ -16,9 +16,15 @@ describe User do
 
 		sym_arr = %i(name email id encrypted_password
 								 reset_password_token sign_in_count 
-								 last_sign_in_ip )
+								 last_sign_in_ip reputation skill_1 skill_2 
+								 skill_3)
 
 		sym_arr.each { |sym| it { should respond_to(sym) } }
+
+		describe "with email having mixed case" do
+			before { @user.email = "fOOloh@funNy.COm"}
+			it { should be_valid}
+		end
 	end
 
 	describe "with invalid attributes such as" do
