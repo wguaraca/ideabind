@@ -14,12 +14,21 @@ describe User do
 		
 		it { should be_valid }
 
-		sym_arr = %i(name email id encrypted_password
+		sym_arr = %i(admin pins name email id encrypted_password
 								 reset_password_token sign_in_count 
 								 last_sign_in_ip reputation 
 								 skill_1 skill_2 skill_3 )
 
 		sym_arr.each { |sym| it { should respond_to(sym) } }
+
+		describe "with admin attribute set to 'true'" do
+			before do
+				@user.save!
+				@user.toggle!(:admin)
+			end
+
+			it { should be_admin }
+		end
 
 		describe "like valid email formats" do
 			it "should be valid" do
@@ -83,6 +92,29 @@ describe User do
 		        expect(@user).not_to be_valid
 		      end
 		    end
+			end
+		end
+	end
+
+	describe "pins associations" do
+		before { @user.save }
+		let!(:older_pin) do
+			FactoryGirl.create(:pin, user: @user, created_at: 1.day.ago)
+		end
+		let!(:newer_pin) do
+			FactoryGirl.create(:pin, user: @user, created_at: 1.hour.ago)
+		end
+
+		it "should have the right microposts in the right order" do
+			expect(@user.pins.to_a).to eq [newer_pin, older_pin]
+		end
+
+		it "should destroy associated pins" do
+			pins = @user.pins.to_a
+			@user.destroy
+			expect(pins).not_to be_empty
+			pins.each do |pin|
+				expect(Pin.where(id: pin.id)).to be_empty
 			end
 		end
 	end
