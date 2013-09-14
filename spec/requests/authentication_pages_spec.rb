@@ -53,7 +53,7 @@ describe "Authentication" do
 			end
 
 			it { should have_link('Edit Profile',   href: edit_user_registration_path) }
-			it { should have_link('Edit Profile',   href: edit_user_registration_path) }
+			# it { should have_link('Edit Profile',   href: edit_user_registration_path) }
 		end
 	end
 end
