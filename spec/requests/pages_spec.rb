@@ -12,18 +12,22 @@ describe "Pages" do
   	click_link "About"
   	expect(page).to have_title("IdeaBind") 
 
-  	click_link "IdeaBind"
-  	expect(page).to have_content("Welcome to IdeaBind")
+    page.first(:link, "IdeaBind").click
+    expect(page).to have_content("Welcome to IdeaBind")
+
+    within('div.footer') do  # *|* Currently failing.
+      click_link("IdeaBind") 
+      expect(page).to have_content("Welcome to IdeaBind")
+    end
 
 		click_link "Home"
 		expect(page).to have_content("Welcome to IdeaBind") 
 
     click_link "Login"
     expect(page).to have_content("Email")
+   end
 
-  end
-
-  # Needs more work
+  # Needs more work?
 
   subject { page }
 
@@ -33,7 +37,7 @@ describe "Pages" do
     it { should have_link "Home" }
     it { should have_link "About" }
     it { should have_link "IdeaBind" }
-    it { should have_link "Awesome Team" }
+    it { should have_link "Awesome Team" }  # *|* Need to change later.
   end
 
   describe "Home page" do
