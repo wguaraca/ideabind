@@ -9,17 +9,7 @@ class User < ActiveRecord::Base
 
 
   # Setup accessible (or protected) attributes for your model
-<<<<<<< HEAD
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name
-  
 
-  validates :name, presence: true, length: { maximum: 50 }, uniqueness: true
-
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
-										uniqueness: { case_sensitive: false }
-=======
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
@@ -33,5 +23,5 @@ class User < ActiveRecord::Base
 
 	has_many :pins, dependent: :destroy
 	# validates :password, presence: true, length: { maximum: }
->>>>>>> portfolio_page
+
 end
