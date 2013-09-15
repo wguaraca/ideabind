@@ -82,16 +82,24 @@ describe "Authentication" do
 				let(:user) { FactoryGirl.create(:user) }
 
 				describe "when attempting to visit a protected page" do 
+					
 					before do
-						visit edit_user_password_path
-						fill_in 'user_email',    with: user.email
-						fill_in 'user_password', with: user.password
-						click_button "Sign in"
+						visit edit_user_registration_path
+					end
+
+					describe 'should get warning' do
+						it { should have_content "You need to sign in" }
 					end
 
 					describe "after signing in" do
-						it 'should render the desired protected page' do
-							expect(page).to have_content "You are already signed in."
+						before do
+							fill_in 'user_email',    with: user.email
+							fill_in 'user_password', with: user.password
+							click_button "Sign in"
+						end
+					
+						describe 'should render the desired protected page' do
+							it { should have_content 'Edit Profile' }
 						end
 					end
 				end
