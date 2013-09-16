@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  <title>IdeaBind</title>
+	  <title><%= 	if user_signed_in? && 
+	  	           (request.url == profile_url || 
+	  	           	request.url == edit_user_registration_url) 
+						  		current_user.name 
+	  					  else 
+	  					  	"IdeaBind"
+	  					  end
+	  					  		%></title>
 	  <%= stylesheet_link_tag    "application", :media => "all" %>
 	  <%= javascript_include_tag "application" %>
 	  <%= csrf_meta_tags %>

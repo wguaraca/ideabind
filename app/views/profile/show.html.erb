@@ -1,2 +1,20 @@
-<h1>Profile#show</h1>
-<p>Find me in app/views/profile/show.html.erb</p>
+<%= gravatar_for current_user%>
+
+<%= current_user.name%>
+
+<div class= "row">
+	<aside>
+	</aside>
+	<div class="span8">
+		<% if current_user.pins.any? %>
+			<h3> Projects (<%= current_user.pins.count %>)</h3>
+			<ol class="pins">
+				<% @pins = current_user.pins.paginate(page: params[:page]) %> 
+
+				<%= render @pins %>
+			</ol>
+			<%= will_paginate@pins %>
+		<% end %>
+	</div>
+</div>
+

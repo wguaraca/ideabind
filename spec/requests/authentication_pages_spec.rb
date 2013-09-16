@@ -87,8 +87,8 @@ describe "Authentication" do
 					describe "such as profile_page" do
 						before { visit profile_path }
 
-						describe "should give warning" do
-							it { should have_content "not permitted"}
+						describe "it should redirect to signin page" do
+							it { should have_content "Sign in"}
 						end
 
 						describe "after signing in" do
@@ -120,6 +120,7 @@ describe "Authentication" do
 						
 							describe 'should render the desired protected page' do
 								it { should have_content 'Edit Profile' }
+								it { should have_title user.name }
 							end
 						end
 					end
