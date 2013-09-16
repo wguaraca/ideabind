@@ -17,7 +17,7 @@ describe User do
 		sym_arr = %i(admin pins name email id encrypted_password
 								 reset_password_token sign_in_count 
 								 last_sign_in_ip reputation skill_1 skill_2 
-								 skill_3)
+								 skill_3 profile_id)
 
 		sym_arr.each { |sym| it { should respond_to(sym) } }
 
