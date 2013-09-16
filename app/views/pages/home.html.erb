@@ -2,6 +2,22 @@
 	<!-- this is the space where we need to implement our code for the portfolio.  -->
 
 <%= gravatar_for current_user%>
+
+<div class= "row">
+	<aside>
+	</aside>
+	<div class="span8">
+		<% if current_user.pins.any? %>
+			<h3> Projects (<%= current_user.pins.count %>)</h3>
+			<ol class="pins">
+				<%= @pins = current_user.pins.paginate(page: params[:page]) %> <!-- .paginate(page: params[:page]) %> -->
+				<%= render @pins %>
+			</ol>
+			<!-- <%= will_paginate@pins %> -->
+		<% end %>
+	</div>
+</div>
+<%= current_user.name%>
 <p>This is a place holder for our users portfolio page </p>
 
 <!-- <h1>Welcome! This will be our users portfolio </h1> -->
