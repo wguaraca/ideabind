@@ -11,11 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20130913035828) do
-=======
+
 ActiveRecord::Schema.define(version: 20130913211233) do
->>>>>>> portfolio_page
 
   create_table "pins", force: true do |t|
     t.string   "description"
@@ -49,10 +46,9 @@ ActiveRecord::Schema.define(version: 20130913211233) do
     t.string   "skill_1"
     t.string   "skill_2"
     t.string   "skill_3"
-<<<<<<< HEAD
-=======
+
     t.boolean  "admin",                  default: false
->>>>>>> portfolio_page
+
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

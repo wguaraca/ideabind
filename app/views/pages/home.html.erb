@@ -10,13 +10,15 @@
 		<% if current_user.pins.any? %>
 			<h3> Projects (<%= current_user.pins.count %>)</h3>
 			<ol class="pins">
-				<%= @pins = current_user.pins.paginate(page: params[:page]) %> <!-- .paginate(page: params[:page]) %> -->
+				<% @pins = current_user.pins.paginate(page: params[:page]) %> 
+
 				<%= render @pins %>
 			</ol>
-			<!-- <%= will_paginate@pins %> -->
+			<%= will_paginate@pins %>
 		<% end %>
 	</div>
 </div>
+
 <%= current_user.name%>
 <p>This is a place holder for our users portfolio page </p>
 
