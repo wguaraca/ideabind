@@ -14,6 +14,7 @@ shared_examples_for "failed login attempt" do
 	it { should have_selector('div.alert.alert-alert', 
 													text: 'Invalid') }	
 	it { should_not have_link('Edit Profile') }
+	it { should_not have_link('Profile') }
 	# it { should_not have_link('Settings') }  # 	*|* for future?
 	it { should_not have_link('Logout') }
 end
@@ -52,8 +53,9 @@ describe "Authentication" do
 				click_button 'Sign in'
 			end
 
+			it { should have_link('Profile',      href: profile_path) }
 			it { should have_link('Edit Profile', href: edit_user_registration_path) }
-			it { should have_link('Logout',     href: destroy_user_session_path) }
+			it { should have_link('Logout',       href: destroy_user_session_path) }
 			it { should have_selector('div.alert.alert-notice', text: 'Signed in successfully') }
 
 			# describe "accessing 'new'" do    # *|* Page seems to not render the view completely.
