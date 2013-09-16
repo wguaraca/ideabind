@@ -89,7 +89,7 @@ describe User do
 				before { @user.email = " " }
 
 				it { should_not be_valid }
-			endgi
+			end
 
 			describe "being too long" do
 				before { @user.email = 'b' * 50 + '.com' }
