@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130916035937) do
+ActiveRecord::Schema.define(version: 20130913211233) do
 
   create_table "pins", force: true do |t|
     t.string   "description"
@@ -46,11 +46,9 @@ ActiveRecord::Schema.define(version: 20130916035937) do
     t.string   "skill_2"
     t.string   "skill_3"
     t.boolean  "admin",                  default: false
-    t.string   "profile_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["profile_id"], name: "index_users_on_profile_id", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["skill_1"], name: "index_users_on_skill_1"
   add_index "users", ["skill_2"], name: "index_users_on_skill_2"
