@@ -3,30 +3,27 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 gem 'rails', '4.0.0'
+gem 'bootstrap-sass', '~> 2.3.2.1'
 gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
-# gem 'simple_form'
-gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
+gem 'bootstrap-will_paginate', '0.0.9'
 
-gem 'jquery-rails'
+# One Month Rails
+gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 gem 'devise'
 gem 'protected_attributes'
+# -------------------------------
 
-gem 'faker', '1.1.2'
-gem 'will_paginate', '3.0.4'
-
+gem 'sass-rails',   '4.0.0'
+gem 'uglifier', 		'2.1.1'
+gem 'coffee-rails', '4.0.0'
+gem 'jquery-rails'
 gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
-
-group :production do 
-	gem 'pg', '0.15.1'
-	gem 'rails_12factor', '0.0.2'
-end
 
 group :development, :test do 
 	gem 'sqlite3', '1.3.7'
 	gem 'rspec-rails', '2.13.1' # for testing.
-	# gem 'bcrypt-ruby', '3.1.1'  # for secure passwords.
 	gem 'debugger'
 end
 
@@ -36,13 +33,13 @@ group :test do
 	gem 'factory_girl_rails', '4.2.0'
 end
 
-group :assets do
-  gem 'sass-rails',   '4.0.0'
-  gem 'coffee-rails', '4.0.0'
-  gem 'uglifier', 		'2.1.1'
-  gem 'bootstrap-sass', '~> 2.3.2.1'
-  
+group :doc do
+	gem 'sdoc', '0.3.20', require: false
+end
 
+group :production do 
+	gem 'pg', '0.15.1'
+	gem 'rails_12factor', '0.0.2'
 end
 
 
