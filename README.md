@@ -1,8 +1,5 @@
-# One Month Rails
+# IdeaBind 
 
-This is the sample application for 
-[*One Month Rails: Teach Yourself to Code*](http://onemonthrails.com)
+Track our progress as we work on IdeadBind. 
 
-This is the structure for the Createnovation App 
-
-by [Wilson Guaraca](http://wguaraca.com)
+By: Edderic, Wilson, Allen, Sam 
