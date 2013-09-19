@@ -1,8 +1,11 @@
 !!! 5
 
+/ = stylesheet_link_tag "pages"
+
 - name = ['Wilson Guaraca', 'Edderic Ugaddan', 'Sam Peprah', 'Allen Mack']
 
-- imgsrc = ['wgua.png', '#', '#', '#' ]
+- imgsrc = ['wgua.png', 'euga.jpg','spep.gif' , '#' ]
+- imgsrc = imgsrc.each { |img_path| img_path.prepend('images/') }
 
 - blog_ref = ['#', '#', '#', '#']
 
@@ -24,7 +27,7 @@
       %li.span5  
         .span.12.pagination-centered
           .thumbnail  
-            %img{src: imgsrc[n], alt: 'person #{n}'}
+            %img.admin-img{src: imgsrc[n], alt: name[n]}
               .caption
                 %h5= name[n]
                 %p= par[n]
