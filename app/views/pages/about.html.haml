@@ -1,0 +1,34 @@
+!!! 5
+
+- name = ['Wilson Guaraca', 'Edderic Ugaddan', 'Sam Peprah', 'Allen Mack']
+
+- imgsrc = ['wgua.png', '#', '#', '#' ]
+
+- blog_ref = ['#', '#', '#', '#']
+
+- twit_ref = ['#', '#', '#', '#']
+
+- par = Array.new(4)
+
+- par[0] = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+
+- par[1] = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+
+- par[2] = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+
+- par[3] = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+
+.container  
+  %ul.thumbnails
+    - for n in 0..3 do 
+      %li.span5  
+        .span.12.pagination-centered
+          .thumbnail  
+            %img{src: imgsrc[n], alt: 'person #{n}'}
+              .caption
+                %h5= name[n]
+                %p= par[n]
+                %p  
+                  %a.btn.btn-success{href: blog_ref[n] } Blog
+                  %a.btn.btn-warning{href: twit_ref[n] } Twitter
+        
