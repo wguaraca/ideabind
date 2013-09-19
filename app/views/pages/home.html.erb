@@ -1,9 +1,45 @@
 <% if user_signed_in? %>
-	<!-- this is the space where we need to implement our code for the portfolio.  -->
 
-<%= gravatar_for current_user%>
+<div class="container-fluid">
+   
+        <div class="span3">
+            <!--1st column-->
+            <div id="midCol" data-spy="affix" data-offset-top="250" class="">
+                
+                 <h4 class="caption"> 
+                 	<%= gravatar_for current_user%>
+					<%= current_user.name%>
+				</h4> 
+                <hr class="">
+         </div>
+            <!--/2nd column-->
+        </div>
+        <!--/span3-->
+        <div class="span7">
+           
+        	<div class="well">
+	            <form accept-charset="UTF-8" action="" method="POST">
+					<textarea class="span4" id="new_message" name="new_message" placeholder="Title of New Project" rows="5"></textarea>
+					<button class="btn btn-info" type="submit">Ceate</button>
+				</form>
+            </div>
 
-<%= current_user.name%>
+            <div class="well">
+                <h1 class="">Example project 1</h1>
+                <p class="">This will show the old project 1 that this user has been working on 
+                </p> 
+            <a href="#" class="btn btn-primary">Details</a>
+            </div>
+
+            <div class="well">
+                <h1 class="">Example project 2</h1>
+                <p class="">This will show the old project 2 that this user has been working on 
+                </p> 
+            <a href="#" class="btn btn-primary">Details</a>
+            </div>     
+        </div>
+    </div>
+
 
 <div class= "row">
 	<aside>
@@ -31,13 +67,53 @@
 
 		<h1>Welcome to IdeaBind</h1>
 		<p>
-			Build your Portfolio, one challenge at a time: 
-			<%= link_to"Browse Challenges", "#" %>
+			Liberate Your Natural Genius
 		</p>
 		<p>
 			<%= link_to"Sign up Now", new_user_registration_path, class: "btn btn-primary btn-large " %>
 		</p>
 	</div>
-</div>
+	<div class="well">
+		<p>
+			<strong>Sample Projects</strong>
+		</p>
+		<div id="myCarousel" class="carousel slide">
+			<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+			<!-- Carousel items -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<div class="row-fluid">
+						<div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
+							<div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
+								<div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
+								<div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
+								</div><!--/row-fluid-->
+								</div><!--/item-->
+								<div class="item">
+								<div class="row-fluid">
+								<div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
+								<div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
+								<div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
+								<div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
+								</div><!--/row-fluid-->
+								</div><!--/item-->
+								<div class="item">
+								<div class="row-fluid">
+								<div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
+								<div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
+								<div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
+							<div class="span3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;" /></a></div>
+						</div><!--/row-fluid-->
+					</div><!--/item-->
+				</div><!--/carousel-inner-->
+				<a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+				<a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+			</div><!--/myCarousel-->
+		</div><!--/well-->
+	</div>
 
 <% end %>
