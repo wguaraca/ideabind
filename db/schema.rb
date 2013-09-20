@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130913211233) do
+ActiveRecord::Schema.define(version: 20130920183801) do
+
+  create_table "comments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "usr_id"
+    t.integer  "upd_id"
+    t.integer  "com_id"
+    t.string   "content"
+  end
+
+  add_index "comments", ["upd_id", "usr_id", "com_id", "created_at"], name: "index_comments_on_upd_id_and_usr_id_and_com_id_and_created_at"
 
   create_table "pins", force: true do |t|
     t.string   "description"
@@ -25,6 +36,7 @@ ActiveRecord::Schema.define(version: 20130913211233) do
 
   add_index "pins", ["end_date"], name: "index_pins_on_end_date"
   add_index "pins", ["user_id", "created_at"], name: "index_pins_on_user_id_and_created_at"
+  add_index "pins", ["user_id"], name: "index_pins_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
@@ -45,9 +57,11 @@ ActiveRecord::Schema.define(version: 20130913211233) do
     t.string   "skill_2"
     t.string   "skill_3"
     t.boolean  "admin",                  default: false
+    t.string   "profile_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["profile_id"], name: "index_users_on_profile_id", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["skill_1"], name: "index_users_on_skill_1"
   add_index "users", ["skill_2"], name: "index_users_on_skill_2"
