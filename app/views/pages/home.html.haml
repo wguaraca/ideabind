@@ -2,19 +2,19 @@
 	/ the following is a three column layout for profile info, projects associated with this user, and list of all projects hosted on our site. 
 	.container-fluid
 		.row-fluid
-			.span2
+			.span2.5
 				#sidebar-nav-fixed{"data-spy" => 'affix', "data-offset-top" => "150"}
 					#h4.caption
 						= gravatar_for current_user
 						= current_user.name
-			.span5
+			.span6
 				#midCol{"data-spy" => 'affix', "data-offset-top" => "250"}
 					%form{"accept-charset" => "UTF-2", action: "",
 								method: "POST" }
 						%textarea.span12#new_message{name: "new_message", placeholder: "Title of New Project", rows: "1"}
 						%button.btn.btn-info{type:"#"} Create
 
-				/ @projects should be calculated in the controller, perhaps? 
+				/ @projects should be calculated in the controller, perhaps? Agree!!
 
 				- @projects = [ {title: "Example Project 1", description: "This will show the old project 1 that this user has been working on"}, {title: "Example Project 2", description: "This will show the old project 2 that this user has been working on"} ]
 				- @projects.each do |project|
@@ -22,11 +22,25 @@
 						%h2= project[:title]
 						%p=  project[:description]
 						%a.btn.btn-primary{href: '#'} Details
-			.span5
+			.span3
 				.well
-					%p
-						%strong Ongoing Projects
+					.well
+						%p
+							%strong Ongoing Projects
+						%table
+							%tr
+								%th Project 1
+							%tr
+								%th Project 2
+							%tr
+								%th Project 3
+							%tr
+								%th Project 4
+						.pagination
+							%a{:href => '#'}Next 
+							%a{:href => '#'}Previous
 
+				/ help a brother out with the table above, it definitely is not the most efficient way of using haml :) 
 				/ ongoing projects should get generated separately and we would create table under .well to showcase all of the projects on the site. Thoughts? 
 					
 - else 
