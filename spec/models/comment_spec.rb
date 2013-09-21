@@ -7,7 +7,7 @@ describe Comment do
 
 	describe "should respond to" do
 		sym_arr = %i(id usr_id content upd_id com_id
-			created_at)
+			created_at rating who_rated)
 		sym_arr.each { |sym| it { should respond_to sym } }
 	end
 
@@ -32,10 +32,18 @@ describe Comment do
 
 			it { should_not be_valid }
 		end		
-
 	end
+
+	describe "usr_id, upd_id can be used for mass-assignment" do
+		good_comment = Comment.create(usr_id: "100", 
+																	upd_id: "100",
+																	content: "Trololol")
+
+		subject { good_comment }
+
+		it { should be_valid }
+	end
+
+	describe "when deleted"
 end
 
-			# user_id is existent
-			# update_id is existent
-			# content is existent

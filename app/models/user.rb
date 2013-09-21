@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
   # validates_uniqueness_of :name
 
 	has_many :pins, dependent: :destroy
+  # has_many :who_rated_comment_rels, foreign_key: "comment_id", dependent: :destroy
+  has_many :who_rated_comment_rels, foreign_key: "user_id", dependent: :destroy
+  # has_many :comments, through: :who_rated_comment_rels, source: :comment 
 	# validates :password, presence: true, length: { maximum: }
 
 end

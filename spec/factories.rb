@@ -14,6 +14,7 @@ FactoryGirl.define do
 		sequence(:usr_id) { |n| n }
 		sequence(:upd_id) { |n| n }
 		sequence(:com_id) { |n| n }
+	
 		content "Lorem Ipsum"
 		
 		factory :usr_1 do
@@ -31,6 +32,8 @@ FactoryGirl.define do
 		factory :upd_2 do
 			upd_id 2
 		end
+
+
 	end
 
 	factory :pin do 

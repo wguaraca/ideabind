@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130920183801) do
+ActiveRecord::Schema.define(version: 20130920205144) do
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20130920183801) do
     t.integer  "upd_id"
     t.integer  "com_id"
     t.string   "content"
+    t.integer  "rating"
+    t.string   "who_rated"
   end
 
   add_index "comments", ["upd_id", "usr_id", "com_id", "created_at"], name: "index_comments_on_upd_id_and_usr_id_and_com_id_and_created_at"
@@ -57,14 +59,23 @@ ActiveRecord::Schema.define(version: 20130920183801) do
     t.string   "skill_2"
     t.string   "skill_3"
     t.boolean  "admin",                  default: false
-    t.string   "profile_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["profile_id"], name: "index_users_on_profile_id", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["skill_1"], name: "index_users_on_skill_1"
   add_index "users", ["skill_2"], name: "index_users_on_skill_2"
   add_index "users", ["skill_3"], name: "index_users_on_skill_3"
+
+  create_table "who_rated_comment_rels", force: true do |t|
+    t.integer  "comment_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "who_rated_comment_rels", ["comment_id", "user_id"], name: "index_who_rated_comment_rels_on_comment_id_and_user_id", unique: true
+  add_index "who_rated_comment_rels", ["comment_id"], name: "index_who_rated_comment_rels_on_comment_id"
+  add_index "who_rated_comment_rels", ["user_id"], name: "index_who_rated_comment_rels_on_user_id"
 
 end
