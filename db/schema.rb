@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130921192006) do
+ActiveRecord::Schema.define(version: 20130922005144) do
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20130921192006) do
     t.integer  "rated_comment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "vote_type"
   end
 
   add_index "cratings", ["rater_id", "rated_comment_id"], name: "index_cratings_on_rater_id_and_rated_comment_id", unique: true
