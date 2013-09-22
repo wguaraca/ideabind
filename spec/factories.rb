@@ -4,6 +4,8 @@ FactoryGirl.define do
 		sequence(:email) { |n| "person_#{n}@example.com"}
     password "foobar123"
 		password_confirmation "foobar123"
+		id 1
+		rater_id 1
 
 		factory :admin do
 			admin true
@@ -14,7 +16,8 @@ FactoryGirl.define do
 		sequence(:usr_id) { |n| n }
 		sequence(:upd_id) { |n| n }
 		sequence(:com_id) { |n| n }
-	
+		# sequence(:rated_comment_id) { |n| n }
+		rated_comment_id 1
 		content "Lorem Ipsum"
 		
 		factory :usr_1 do

@@ -6,7 +6,9 @@ describe User do
 			name: "Example User", 
 			email: "user@example.com",
 			password: "foobar12", 
-			password_confirmation: "foobar12") }
+			password_confirmation: "foobar12") 
+
+			@user.rater_id = @user.id}
 
 	subject { @user }
 
@@ -17,7 +19,8 @@ describe User do
 		sym_arr = %i(admin pins name email id encrypted_password
 								 reset_password_token sign_in_count 
 								 last_sign_in_ip reputation skill_1 skill_2 
-								 skill_3 who_rated_comment_rels) # feed?
+								 skill_3 rater_id cratings rated_comments
+								 rated? rate!) # feed?
 
 		sym_arr.each { |sym| it { should respond_to(sym) } }
 
@@ -132,4 +135,19 @@ describe User do
 			end
 		end
 	end
+
+	describe "rating" do
+  	# let(:user) { FactoryGirl.create(:user)}
+  	let(:comment_b) { FactoryGirl.create(:comment) }
+
+  	before do 
+  		@user.save
+  		@user.rate!(comment_b, 1)
+  	end
+
+  	it { should be_rated(comment_b) }
+  	its(:rated_comments) { should include(comment_b)}
+
+  	
+  end
 end
