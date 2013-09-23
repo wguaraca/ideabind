@@ -136,18 +136,127 @@ describe User do
 		end
 	end
 
-	describe "rating" do
+	describe "comment rating" do
   	# let(:user) { FactoryGirl.create(:user)}
   	let(:comment_b) { FactoryGirl.create(:comment) }
 
-  	before do 
-  		@user.save
-  		@user.rate!(comment_b, 1)
+  	describe "upvote nil comment should be illegal" do
+  		before { @user.save }
+
+  		it { expect {@user.rate!(nil, "up").to raise error } }
   	end
-
-  	it { should be_rated(comment_b) }
-  	its(:rated_comments) { should include(comment_b)}
-
   	
+  	describe "upvote" do
+	  	before do
+	  	  @user.save
+	  		@user.rate!(comment_b, "up") 
+	  	end
+
+	  	it { should be_rated(comment_b) }
+	  	its(:rated_comments) { should include(comment_b)} 	
+	  end
+
+	  describe "downvote" do
+	  	before do
+	  		@user.save
+	  		@user.rate!(comment_b, "down") 
+	  	end
+
+	  	it { should be_rated(comment_b) }
+	  	its(:rated_comments) { should include(comment_b)} 	
+	  end
+
+	  describe "upvoting should increase rating by 1" do
+				before do
+				@user.save
+				@user.rate!(comment_b, "up")
+			end
+
+			describe "and user-rating relationship should exist" do
+	  		it { expect { user.cratings.find_by(rated_comment_id: comment_b.id) }.to_not eq nil }
+
+	  		describe "and its vote_type should be 'up'" do
+	  		end
+	  	end
+			
+			describe "then upvoting again" do
+				before { @user.rate!(comment_b, "up") }
+
+				describe "should destroy rating-user relationship" do
+					# subject { @user.cratings.find_by(rated_comment_id: comment_b.id) }
+
+					let(:user_rat_rels) { @user.cratings.find_by(rated_comment_id: comment_b.id).to_a }
+					
+					specify do
+						user_rat_rels.each do |x| 
+							it { expect{x}.to eq nil  }
+						end
+					end
+				end
+
+				describe "should negate the upvote" do
+					subject { comment_b.rating }
+					it { should eq 0 }
+				end
+
+			 	describe "then another upvote should increase rating by 1" do
+			 		before { @user.rate!(comment_b, "up")}
+					subject { comment_b.rating } 
+					it { should eq 1 }
+					
+					describe "and user-rating relationship should exist" do
+			  		it { expect { @user.cratings.find_by(rated_comment_id: comment_b.id) }.to_not eq nil }
+			  	end
+				end
+			end			
+
+			describe "then downvote" do
+				before { @user.rate!(comment_b, "down") }
+
+				describe "should update comment rating rel vote_type to down" do
+
+					subject { @user.cratings.find_by(rated_comment_id: comment_b.id).vote_type }
+					it { should eq "down"}
+				end
+			end
+	  end
+
+	  describe "downvote should decrease rating by 1" do
+	  	before { @user.save }
+	  	it { expect{@user.rate!(comment_b, "down")}.to change{comment_b.rating}.from(0).to(-1) }
+
+	  	describe "and user-rating relationship should exist" do
+	  		it { expect { @user.cratings.find_by(rated_comment_id: comment_b.id) }.to_not eq nil }
+	  	end
+	  	describe "then downvoting again should bring rating back up to 0" do
+				describe "should destroy rating-user relationship" do
+					subject { @user.cratings.find_by(rated_comment_id: comment_b.id) }
+					it { should eq nil }
+				end
+
+				describe "should negate the upvote" do
+
+					subject { comment_b.rating }
+					it { should eq 0 }
+				end
+	
+				describe "and finally downvoting one more time should decrease rating by 1" do
+			  	it { expect{@user.rate!(comment_b, "down")}.to change{comment_b.rating}.from(0).to(-1) }
+			  	describe "and user-rating relationship should exist" do
+			  		it { expect { user.cratings.find_by(rated_comment_id: comment_b.id) }.to_not eq nil }
+			  	end
+			  end
+			end
+
+			describe "then upvote" do
+				before { @user.rate!(comment_b, "up") }
+
+				describe "should update comment rating rel vote_type to up" do
+
+					subject { @user.cratings.find_by(rated_comment_id: comment_b.id).vote_type }
+					it { should eq "up"}
+				end
+			end
+	  end
   end
 end

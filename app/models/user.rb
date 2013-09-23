@@ -29,17 +29,42 @@ class User < ActiveRecord::Base
   has_many :rated_comments, through: :cratings
 
   def rated?(comment)
-    cratings.find_by(rated_comment_id: comment.id)
+    self.cratings.find_by(rated_comment_id: comment.id)
   end
 
-  def rate!(comment, num)
-    cratings.create!(rated_comment_id: comment.id)
-    if num == 1
-      comment.upvote
-    else 
-      comment.downvote
-    end
+  def rate!(comment, vote_type)
+    crating = rated?(comment)
 
+    if crating
+      # if rated_comment.vote_type == "up" && vote_type == "up" 
+      # Change the rating of comment
+      # Properly adjust the rating value of the vote_type in "crating" 
+      if crating.vote_type == "up" && vote_type == "up"
+        comment.downvote
+        self.cratings.find_by(rated_comment_id: comment.id).destroy!
+        # crating.destroy!
+      elsif crating.vote_type == "up" && vote_type == "down"
+        2.times { comment.downvote }
+        crating.vote_type = "down"
+        crating.save!
+      elsif crating.vote_type == "down" && vote_type == "down"
+        comment.upvote
+        # crating.destroy!
+        self.cratings.find_by(rated_comment_id: comment.id).destroy!
+      elsif crating.vote_type == "down" && vote_type == "up"
+        2.times { comment.upvote }
+        # crating.vote_type = "up"
+      end
+    else
+      crating = cratings.create!(rated_comment_id: comment.id, vote_type: vote_type)
+      crating.save
+
+      if vote_type == "up"
+        comment.upvote
+      else 
+        comment.downvote
+      end
+    end
   end
 
   

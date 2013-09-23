@@ -1,0 +1,14 @@
+user1 = User.create(name: "edd", email: "edderic@gmail.com", password: "funnybunny", password_confirmation: "funnybunny")
+
+user2 = User.create(name: "chucky", email: "chucky@gmail.com", password: "funnybunny", password_confirmation: "funnybunny")
+
+
+comment = Comment.create(content: "Lorem Ipsum", usr_id: 1, upd_id: 1)
+
+rel = user1.cratings.create!(rated_comment_id: comment.id)
+
+user1.rate!(comment, "up")
+user2.rate!(comment, "up")
+
+user1.cratings.find_by(rated_comment_id:comment.id)
+user2.cratings.find_by(rated_comment_id:comment.id)

@@ -1,4 +1,6 @@
 class Crating < ActiveRecord::Base
+	# before_save { rated_comment_id = id }
+
 	belongs_to :rater, class_name: 'User'
 	belongs_to :rated_comment, class_name: 'Comment'
 
@@ -8,4 +10,7 @@ class Crating < ActiveRecord::Base
 	validates :rated_comment_id, presence: true
 	validates :vote_type, presence: true, 
 						inclusion: { in: %w(up down) }
+
+	
+
 end

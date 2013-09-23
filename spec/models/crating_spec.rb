@@ -5,7 +5,7 @@ describe Crating do
   let(:rated_comment) { FactoryGirl.create(:comment) }
 
 	let(:crating) do
-	  rater.cratings.build(rated_comment_id: rated_comment.rated_comment_id, vote_type: "up")
+	  rater.cratings.build(rated_comment_id: rated_comment.id, vote_type: "up")
 	end
 
 	subject { crating }

@@ -16,6 +16,8 @@ FactoryGirl.define do
 		sequence(:usr_id) { |n| n }
 		sequence(:upd_id) { |n| n }
 		sequence(:com_id) { |n| n }
+
+		# rating = 0
 		# sequence(:rated_comment_id) { |n| n }
 		rated_comment_id 1
 		content "Lorem Ipsum"
