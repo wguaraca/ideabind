@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130922005144) do
+ActiveRecord::Schema.define(version: 20130923132717) do
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
@@ -21,8 +21,6 @@ ActiveRecord::Schema.define(version: 20130922005144) do
     t.integer  "com_id"
     t.string   "content"
     t.integer  "rating"
-    t.integer  "rater_id"
-    t.integer  "comment_id"
     t.integer  "rated_comment_id"
   end
 
@@ -71,7 +69,6 @@ ActiveRecord::Schema.define(version: 20130922005144) do
     t.string   "skill_2"
     t.string   "skill_3"
     t.boolean  "admin",                  default: false
-    t.integer  "rater_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

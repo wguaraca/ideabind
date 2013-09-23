@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe User do
 
-	before { @user = User.new(
+	before do
+	 @user = User.new(
 			name: "Example User", 
 			email: "user@example.com",
 			password: "foobar12", 
 			password_confirmation: "foobar12") 
-
-			@user.rater_id = @user.id}
+	end
 
 	subject { @user }
 
@@ -19,8 +19,8 @@ describe User do
 		sym_arr = %i(admin pins name email id encrypted_password
 								 reset_password_token sign_in_count 
 								 last_sign_in_ip reputation skill_1 skill_2 
-								 skill_3 rater_id cratings rated_comments
-								 rated? rate!) # feed?
+								 skill_3 cratings rated_comments
+								 rated? rate!) # feed? rater_id
 
 		sym_arr.each { |sym| it { should respond_to(sym) } }
 
