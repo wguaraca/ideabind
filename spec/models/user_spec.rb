@@ -183,15 +183,17 @@ describe User do
 				before { @user.rate!(comment_b, "up") }
 
 				describe "should destroy rating-user relationship" do
-					# subject { @user.cratings.find_by(rated_comment_id: comment_b.id) }
+					subject { @user.cratings.find_by(rated_comment_id: comment_b.id) }
 
-					let(:user_rat_rels) { @user.cratings.find_by(rated_comment_id: comment_b.id).to_a }
+					it { should eq nil }
+
+					# let(:user_rat_rels) { @user.cratings.find_by(rated_comment_id: comment_b.id).to_a }
 					
-					specify do
-						user_rat_rels.each do |x| 
-							it { expect{x}.to eq nil  }
-						end
-					end
+					# specify do
+					# 	user_rat_rels.each do |x| 
+					# 		it { expect{x}.to eq nil  }
+					# 	end
+					# end
 				end
 
 				describe "should negate the upvote" do
@@ -222,13 +224,30 @@ describe User do
 	  end
 
 	  describe "downvote should decrease rating by 1" do
-	  	before { @user.save }
-	  	it { expect{@user.rate!(comment_b, "down")}.to change{comment_b.rating}.from(0).to(-1) }
+	  	before do
+	  		@user.save
+	  		@user.rate!(comment_b, "down")
+	  	end
+	  	
+	  	subject { comment_b.rating }
+
+	  	it { should eq -1 }
 
 	  	describe "and user-rating relationship should exist" do
-	  		it { expect { @user.cratings.find_by(rated_comment_id: comment_b.id) }.to_not eq nil }
+	  		let(:crating) { @user.cratings.find_by(rated_comment_id: comment_b.id) }
+	  		it { expect { crating }.to_not eq nil }
+
+	  		describe "and vote_type should be 'down'" do
+	  			# it { expect { crating.vote_type }.to eq "down" }
+
+	  			subject { crating.vote_type }
+
+	  			it { should eq "down"}
+	  		end
 	  	end
-	  	describe "then downvoting again should bring rating back up to 0" do
+	  	describe "then downvoting again" do
+	  		before { @user.rate!(comment_b, "down") }
+
 				describe "should destroy rating-user relationship" do
 					subject { @user.cratings.find_by(rated_comment_id: comment_b.id) }
 					it { should eq nil }
@@ -251,10 +270,19 @@ describe User do
 			describe "then upvote" do
 				before { @user.rate!(comment_b, "up") }
 
-				describe "should update comment rating rel vote_type to up" do
+				describe "should update comment rating rel" do
+					subject { @user.cratings.find_by(rated_comment_id: comment_b.id) }
+					it { should_not eq nil }
+				end
 
+				describe "should update comment rating rel vote_type to up" do
 					subject { @user.cratings.find_by(rated_comment_id: comment_b.id).vote_type }
 					it { should eq "up"}
+				end
+
+				describe "then rating should be 1" do
+					subject { comment_b.rating }
+					it { should eq 1 }
 				end
 			end
 	  end

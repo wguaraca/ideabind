@@ -32,28 +32,29 @@ class User < ActiveRecord::Base
     self.cratings.find_by(rated_comment_id: comment.id)
   end
 
+
+  # Change the rating of comment
+  # Properly adjust the rating value of the vote_type in "crating" 
+
   def rate!(comment, vote_type)
     crating = rated?(comment)
 
     if crating
-      # if rated_comment.vote_type == "up" && vote_type == "up" 
-      # Change the rating of comment
-      # Properly adjust the rating value of the vote_type in "crating" 
+
       if crating.vote_type == "up" && vote_type == "up"
         comment.downvote
-        self.cratings.find_by(rated_comment_id: comment.id).destroy!
-        # crating.destroy!
+        crating.destroy!
       elsif crating.vote_type == "up" && vote_type == "down"
         2.times { comment.downvote }
         crating.vote_type = "down"
         crating.save!
       elsif crating.vote_type == "down" && vote_type == "down"
         comment.upvote
-        # crating.destroy!
-        self.cratings.find_by(rated_comment_id: comment.id).destroy!
+        crating.destroy!
       elsif crating.vote_type == "down" && vote_type == "up"
         2.times { comment.upvote }
-        # crating.vote_type = "up"
+        crating.vote_type = "up"
+        crating.save!
       end
     else
       crating = cratings.create!(rated_comment_id: comment.id, vote_type: vote_type)
