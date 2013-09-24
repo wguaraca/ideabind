@@ -2,8 +2,16 @@ user1 = User.create(name: "edd", email: "edderic@gmail.com", password: "funnybun
 
 user2 = User.create(name: "chucky", email: "chucky@gmail.com", password: "funnybunny", password_confirmation: "funnybunny")
 
+comment1 = Comment.create(content: "Lorem Ipsum", update_id: 1)
 
-comment = Comment.create(content: "Lorem Ipsum", usr_id: 1, upd_id: 1)
+
+comment2 = Comment.create(content: "Mona Lisa", update_id: 1)
+
+___
+
+comment1 = user1.comments.create(content: "Lorem Ipsum", update_id: 1)
+
+comment2 = user1.comments.create(content: "Mona Lisa", update_id: 1)
 
 rel = user1.cratings.create!(rated_comment_id: comment.id)
 

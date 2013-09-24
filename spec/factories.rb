@@ -11,29 +11,13 @@ FactoryGirl.define do
 	end
 
 	factory :comment do
-		sequence(:usr_id) { |n| n } # Shouldn't be mass-assignable
-		sequence(:upd_id) { |n| n }
-		sequence(:com_id) { |n| n }
+		sequence(:user_id) { |n| n } # Shouldn't be mass-assignable
+		sequence(:update_id) { |n| n }
+		sequence(:par_comment_id) { |n| n }
 	
 		
 		content "Lorem Ipsum"
-		
-		factory :usr_1 do
-			usr_id 1
-		end
-
-		factory :usr_2 do
-			usr_id 2
-		end
-
-		factory :upd_1 do
-			upd_id 1
-		end
-
-		factory :upd_2 do
-			upd_id 2
-		end
-
+		user
 
 	end
 
