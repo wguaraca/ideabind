@@ -290,6 +290,6 @@ describe User do
 			FactoryGirl.create(:comment, user: @user, created_at: 1.hour.ago)
 		end
 
-		it "should have the right comments in the right order "
+		# it "should have the right comments in the right order "
 	end
 end

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Multiple users and comments" do 
 	let(:user1) { FactoryGirl.create(:user) }
 	let(:user2) { FactoryGirl.create(:user) }
-	let(:comment)	{ user1.comments.create(content: "funny bunny!", update_id:1) }
+	let(:comment)	{ user1.comments.create(content: "funny bunny!"+'a'*140, update_id:1) }
 	
 	describe "user1 upvotes comment: " do
 		before { user1.rate!(comment, "up") }

@@ -16,7 +16,7 @@ FactoryGirl.define do
 		sequence(:par_comment_id) { |n| n }
 	
 		
-		content "Lorem Ipsum"
+		content "Lorem Ipsum" + 'a' * 140
 		user
 
 	end

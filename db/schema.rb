@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130924112507) do
+ActiveRecord::Schema.define(version: 20130924233931) do
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
@@ -23,11 +23,13 @@ ActiveRecord::Schema.define(version: 20130924112507) do
     t.integer  "update_id"
     t.integer  "depth"
     t.integer  "idea_id"
+    t.integer  "parent_id"
   end
 
   add_index "comments", ["created_at"], name: "index_comments_on_upd_id_and_usr_id_and_com_id_and_created_at"
   add_index "comments", ["id"], name: "index_comments_on_id", unique: true
   add_index "comments", ["idea_id", "update_id"], name: "index_comments_on_idea_id_and_update_id", unique: true
+  add_index "comments", ["parent_id"], name: "index_comments_on_parent_id"
   add_index "comments", ["user_id", "update_id", "created_at"], name: "index_comments_on_user_id_and_update_id_and_created_at"
 
   create_table "cratings", force: true do |t|

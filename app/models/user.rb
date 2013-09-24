@@ -44,9 +44,7 @@ class User < ActiveRecord::Base
 
       if crating.vote_type == "up" && vote_type == "up"
         comment.downvote
-        # self.cratings.find_by(rated_comment_id: comment.id).delete
         crating.destroy!
-        # crating.delete
       elsif crating.vote_type == "up" && vote_type == "down"
         2.times { comment.downvote }
         crating.vote_type = "down"
