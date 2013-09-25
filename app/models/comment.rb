@@ -44,4 +44,8 @@
 
 		end
 
+		def destroy
+			self.replies.length > 0 ? self.content = nil : super
+		end
+
 	end

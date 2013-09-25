@@ -10,7 +10,7 @@ describe Comment do
 	describe "should respond to" do
 		sym_arr = %i(id user_id content update_id par_comment_id
 			created_at rating upvote downvote helpful! helpful?
-	  	 helpful? replies parent)#parent)
+	  	 helpful? replies parent destroy)#parent)
 		sym_arr.each { |sym| it { should respond_to sym } }
 	end	
 
@@ -60,6 +60,11 @@ describe Comment do
 			it { expect(parent.content).to eq "parent" + 'a'*150 } 
 		end
 
+		describe "kid should have no replies" do
+			let(:arr) { kid.replies.to_a }
+			it { arr.each { |reply| expect(reply).to eq nil } }
+		end
+
 		describe "kid should have right content" do
 			it { expect(kid.content).to eq "child" + 'a'*150 }
 		end
@@ -107,7 +112,28 @@ describe Comment do
 			end
 		end
 
-		
+		describe "destroy method" do
+			describe "on parent" do
+				before { parent.destroy }
+
+				describe "shouldn't delete parent" do
+					it { expect(parent).to_not eq nil }
+				end
+				
+				describe "should only delete the contents" do
+					it { expect(parent.content).to eq nil }
+				end
+			end
+
+			describe "on kid" do
+				before { kid.destroy }
+
+				describe "should leave no trace of the kid" do
+					let(:arr) { kid.replies.to_a }
+					it { arr.each { |reply| expect(reply).to eq nil } }
+				end
+			end
+		end
 		describe "and child of that" do
 		end
 	end
