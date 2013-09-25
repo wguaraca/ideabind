@@ -60,6 +60,9 @@ describe Comment do
 			it { expect(parent.content).to eq "parent" + 'a'*150 } 
 		end
 
+		describe "parent should have no parent" do
+			it { expect(parent.parent).to eq nil }
+		end
 		describe "kid should have no replies" do
 			let(:arr) { kid.replies.to_a }
 			it { arr.each { |reply| expect(reply).to eq nil } }
@@ -112,6 +115,77 @@ describe Comment do
 			end
 		end
 
+		describe "tree" do
+			let(:parent1) {FactoryGirl.create(:comment, user: user) }
+			let(:kid1) { FactoryGirl.create(:comment, user: user ) }
+			let(:kid2) { FactoryGirl.create(:comment, user: user ) }
+
+			before do
+				parent1.replies << kid1
+				parent1.replies << kid2
+			end
+
+			# describe "where kids have equal rating but kid2 has earlier creation times" do
+			# 	before do # use update_attributes instead?
+			# 		kid1.created_at = 1.day.ago
+			# 		kid2.created_at = 1.hour.ago
+
+			# 		kid1.rating = 10
+			# 		kid2.rating = 10
+
+			# 		kid1.save
+			# 		kid2.save
+			# 	end
+
+			# 	describe "kid 2 should come before kid 1" do
+			# 		let(:kids) { parent1.replies.to_a }
+
+			# 		it { expect(kids).to eq [kid2, kid1] }
+			# 	end
+			# end
+
+			describe "where kids have equal creation times but kid2 has higher rating" do
+				before do
+					kid1.created_at = 1.day.ago
+					kid2.created_at = kid1.created_at
+
+					kid1.rating = 5
+					kid2.rating = 10
+
+					kid1.save
+					kid2.save
+				end
+
+				describe "kid 2 should come before kid 1" do
+					let(:kids) { parent1.replies }
+
+					it { expect(kids).to eq [kid2, kid1] }
+				end
+			end
+
+			describe "where kid2 has higher rating but has later creation times" do
+				before do
+					kid1.created_at = 1.hour.ago
+					kid2.created_at = 1.day.ago
+
+					kid1.rating = 5
+					kid2.rating = 10
+
+					kid1.save
+					kid2.save
+				end
+
+				describe "kid 2 should come before kid 1" do
+					let(:kids) { parent1.replies }
+
+					it { expect(kids).to eq [kid2, kid1] }
+				end
+			end
+
+
+
+		end
+
 		describe "destroy method" do
 			describe "on parent" do
 				before { parent.destroy }
@@ -134,15 +208,6 @@ describe Comment do
 				end
 			end
 		end
-		describe "and child of that" do
-		end
-	end
-
-	describe "parent comment" do
-	end
-
-
-	describe "when deleted" do
 	end
 end
 

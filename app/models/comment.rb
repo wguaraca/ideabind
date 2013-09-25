@@ -2,6 +2,8 @@
 		after_save :set_par_comment_id_default
 		before_save :set_rating_default
 
+		# default_scope 
+
 		validates :user_id, presence: true
 		validates :content, presence: true, length: { minimum: 140 }
 		validates :update_id, presence: true
@@ -16,7 +18,7 @@
 		belongs_to :user
 		belongs_to :parent, class_name: 'Comment'
 		# belongs_to :par_comment, class_name: 'Comment'
-		has_many   :replies, class_name: 'Comment', foreign_key: 'parent_id'
+		has_many :replies, -> { order "rating DESC" }, class_name: 'Comment', foreign_key: 'parent_id'
 
 		def upvote 
 			self.rating += 1

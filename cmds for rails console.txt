@@ -9,9 +9,9 @@ comment2 = Comment.create(content: "Mona Lisa", update_id: 1)
 
 ___
 
-comment1 = user1.comments.create(content: "Lorem Ipsum", update_id: 1)
+comment1 = user1.comments.create(content: 'a'*140, update_id: 1)
 
-comment2 = user1.comments.create(content: "Mona Lisa", update_id: 1)
+comment2 = user1.comments.create(content: 'b'*140, update_id: 1)
 
 rel = user1.cratings.create!(rated_comment_id: comment.id)
 
