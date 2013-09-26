@@ -10,7 +10,7 @@ describe Comment do
 	describe "should respond to" do
 		sym_arr = %i(id user_id content update_id par_comment_id
 			created_at rating upvote downvote helpful! helpful?
-	  	 helpful? replies parent destroy)#parent)
+	  	 helpfulness replies parent destroy)
 		sym_arr.each { |sym| it { should respond_to sym } }
 	end	
 
@@ -37,7 +37,7 @@ describe Comment do
 		end		
 
 		describe "par_comment_id is not present" do
-			before { par_comment_id = nil}
+			before { comment.par_comment_id = nil}
 
 			it { should be_valid }
 		end
@@ -46,6 +46,10 @@ describe Comment do
 			before { comment.content = 'abc'}
 
 			it { should_not be_valid }
+		end
+
+		describe "helpfulness should default to false" do
+			it { expect(comment.helpfulness).to eq false }
 		end
 	end
 

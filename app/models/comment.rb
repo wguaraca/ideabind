@@ -1,6 +1,6 @@
 	class Comment < ActiveRecord::Base
 		after_save :set_par_comment_id_default
-		before_save :set_rating_default
+		before_save :set_defaults
 
 		# default_scope 
 
@@ -15,10 +15,11 @@
 		attr_accessible :content, :update_id
 		has_many :cratings, class_name: 'Crating', foreign_key: "rated_comment_id"
 		has_many :raters, through: :cratings
+		has_many :replies, -> { order "rating DESC" }, class_name: 'Comment', foreign_key: 'parent_id'
 		belongs_to :user
 		belongs_to :parent, class_name: 'Comment'
-		# belongs_to :par_comment, class_name: 'Comment'
-		has_many :replies, -> { order "rating DESC" }, class_name: 'Comment', foreign_key: 'parent_id'
+
+		
 
 		def upvote 
 			self.rating += 1
@@ -28,7 +29,7 @@
 			self.rating -= 1
 		end
 
-		def set_rating_default
+		def set_defaults
 			self.rating ||= 0
 		end
 

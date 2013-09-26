@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 	before_save do 
     self.email = email.downcase 
-    # self.rater_id = self.id
+    # self.rater_id = self.rater_id
   end
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   has_many :cratings, foreign_key: 'rater_id', class_name: 'Crating'#, dependent: :destroy
   has_many :rated_comments, through: :cratings
   has_many :comments
+  has_many :updates
 
   def rated?(comment)
     self.cratings.find_by(rated_comment_id: comment.id)

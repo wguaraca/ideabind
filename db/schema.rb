@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130924233931) do
+ActiveRecord::Schema.define(version: 20130926173739) do
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
@@ -24,9 +24,11 @@ ActiveRecord::Schema.define(version: 20130924233931) do
     t.integer  "depth"
     t.integer  "idea_id"
     t.integer  "parent_id"
+    t.boolean  "helpfulness",    default: false
   end
 
   add_index "comments", ["created_at"], name: "index_comments_on_upd_id_and_usr_id_and_com_id_and_created_at"
+  add_index "comments", ["helpfulness"], name: "index_comments_on_helpfulness"
   add_index "comments", ["id"], name: "index_comments_on_id", unique: true
   add_index "comments", ["idea_id", "update_id"], name: "index_comments_on_idea_id_and_update_id", unique: true
   add_index "comments", ["parent_id"], name: "index_comments_on_parent_id"
@@ -55,6 +57,19 @@ ActiveRecord::Schema.define(version: 20130924233931) do
   add_index "pins", ["end_date"], name: "index_pins_on_end_date"
   add_index "pins", ["user_id", "created_at"], name: "index_pins_on_user_id_and_created_at"
   add_index "pins", ["user_id"], name: "index_pins_on_user_id"
+
+  create_table "updates", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "rating"
+    t.integer  "user_id"
+    t.integer  "idea_id"
+  end
+
+  add_index "updates", ["created_at"], name: "index_updates_on_created_at"
+  add_index "updates", ["idea_id"], name: "index_updates_on_idea_id", unique: true
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false

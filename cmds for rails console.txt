@@ -10,8 +10,8 @@ comment2 = Comment.create(content: "Mona Lisa", update_id: 1)
 ___
 
 comment1 = user1.comments.create(content: 'a'*140, update_id: 1)
-
 comment2 = user1.comments.create(content: 'b'*140, update_id: 1)
+comment3 = user1.comments.create(content: 'c'*140, update_id: 1)
 
 rel = user1.cratings.create!(rated_comment_id: comment.id)
 
@@ -20,3 +20,10 @@ user2.rate!(comment, "up")
 
 user1.cratings.find_by(rated_comment_id:comment.id)
 user2.cratings.find_by(rated_comment_id:comment.id)
+
+___
+Updates:
+
+update1 = user1.updates.create(title: "Me playing guitar", description: "The Most Evolved by John H. Clarke")
+
+update1 = user.updates.create()

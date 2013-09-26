@@ -20,7 +20,7 @@ describe User do
 								 reset_password_token sign_in_count 
 								 last_sign_in_ip reputation skill_1 skill_2 
 								 skill_3 cratings rated_comments
-								 rated? rate! comments) # feed? rater_id
+								 rated? rate! comments updates) # feed? rater_id
 
 		sym_arr.each { |sym| it { should respond_to(sym) } }
 
