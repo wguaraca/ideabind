@@ -1,0 +1,3 @@
+[submodule "crocodoc-ruby"]
+	path = crocodoc-ruby
+	url = git@github.com:crocodoc/crocodoc-ruby.git
