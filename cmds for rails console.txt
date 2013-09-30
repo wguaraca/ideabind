@@ -24,6 +24,19 @@ user2.cratings.find_by(rated_comment_id:comment.id)
 ___
 Updates:
 
+update1 = user1.updates.create(title: "Me playing guitar", description: "The Most Evolved by John H. Clarke", idea_id: idea.id)
+update1.idea = idea
+
 update1 = user1.updates.create(title: "Me playing guitar", description: "The Most Evolved by John H. Clarke")
 
+update2 = user1.updates.create(title: "Me learning tennis", description: "Backhand practice")
+
 update1 = user.updates.create()
+
+___
+Ideas:
+
+idea = Idea.new(title: "funny", description: "bunny", owner_id: user1.id)
+idea.owner = user1
+idea.collaborators << user1
+idea.updates << update

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130926173739) do
+ActiveRecord::Schema.define(version: 20130927204602) do
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
@@ -44,6 +44,28 @@ ActiveRecord::Schema.define(version: 20130926173739) do
 
   add_index "cratings", ["rater_id", "rated_comment_id"], name: "index_cratings_on_rater_id_and_rated_comment_id", unique: true
 
+  create_table "ideabinds", force: true do |t|
+    t.integer  "collaborator_id"
+    t.integer  "collaborated_idea_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ideabinds", ["collaborator_id", "collaborated_idea_id"], name: "index_ideabinds_on_collaborator_id_and_collaborated_idea_id", unique: true
+
+  create_table "ideas", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "rating"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+  end
+
+  add_index "ideas", ["owner_id"], name: "index_ideas_on_owner_id"
+  add_index "ideas", ["rating", "created_at"], name: "index_ideas_on_rating_and_created_at"
+
   create_table "pins", force: true do |t|
     t.string   "description"
     t.datetime "created_at"
@@ -69,7 +91,7 @@ ActiveRecord::Schema.define(version: 20130926173739) do
   end
 
   add_index "updates", ["created_at"], name: "index_updates_on_created_at"
-  add_index "updates", ["idea_id"], name: "index_updates_on_idea_id", unique: true
+  add_index "updates", ["idea_id"], name: "index_updates_on_idea_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false

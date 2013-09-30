@@ -3,8 +3,12 @@ require 'spec_helper'
 
 describe Comment do
 	let(:user) { FactoryGirl.create(:user)}
+	let(:idea) { Idea.create(description: 'funny' *23, title:'bunny', owner_id: user.id)}  # take out owner_id from attr_accessible
+	let(:ideabind) { user.ideabinds.create(collaborated_idea_id: idea.id) }
+	let(:update) { user.updates.create(description: 'b'*140, title: "poopa", idea_id: idea.id) }
+	let(:comment) { user.comments.create(content: 'a' * 141, update_id: update.id) }
 
-	let(:comment) { user.comments.build(content: 'a' * 141, update_id: 1) }
+	
 	subject { comment }
 
 	describe "should respond to" do
@@ -14,6 +18,10 @@ describe Comment do
 		sym_arr.each { |sym| it { should respond_to sym } }
 	end	
 
+	it { expect(idea).to be_valid }
+	it { expect(ideabind).to be_valid }
+	it { expect(update).to be_valid }
+	it { expect(comment).to be_valid }
 	it { should be_valid }
 
 	describe "validations" do
@@ -125,6 +133,7 @@ describe Comment do
 			let(:kid2) { FactoryGirl.create(:comment, user: user ) }
 
 			before do
+				update.comments << parent1
 				parent1.replies << kid1
 				parent1.replies << kid2
 			end
@@ -186,32 +195,51 @@ describe Comment do
 				end
 			end
 
+			describe "parent" do
 
+				let(:parent1_id) { parent1.id }
 
-		end
-
-		describe "destroy method" do
-			describe "on parent" do
-				before { parent.destroy }
-
-				describe "shouldn't delete parent" do
-					it { expect(parent).to_not eq nil }
+				describe "Comment where parent1.id should give us parent1" do
+					it { expect(Comment.where(id:parent1_id).to_a[0]).to eq parent1 }
 				end
-				
-				describe "should only delete the contents" do
-					it { expect(parent.content).to eq nil }
+
+				describe "update should be existent" do
+					it { expect(update).not_to be_nil }
+				end
+
+				describe "parent should be a comment of an update" do
+					it { expect(parent1.update).to eq update}
+				end
+
+				describe "destroy method" do
+					before { parent1.destroy }
+
+					describe "shouldn't delete parent1_id" do
+						it { expect(parent1_id).not_to eq nil }
+					end
+
+					describe "shouldn't delete parent" do
+						it { expect(parent1).to_not eq nil }
+					end
+					
+					describe "should only delete the contents" do
+						it { expect(Comment.where(id: parent1_id).to_a[0].content).to eq nil }
+					end
+				end
+
+				describe "on kid" do
+					before { kid.destroy }
+
+					describe "should leave no trace of the kid" do
+						let(:arr) { kid1.replies.to_a }
+						it { arr.each { |reply| expect(reply).to eq nil } }
+					end
 				end
 			end
 
-			describe "on kid" do
-				before { kid.destroy }
-
-				describe "should leave no trace of the kid" do
-					let(:arr) { kid.replies.to_a }
-					it { arr.each { |reply| expect(reply).to eq nil } }
-				end
-			end
 		end
+
+		
 	end
 end
 

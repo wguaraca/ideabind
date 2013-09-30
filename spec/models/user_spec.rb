@@ -20,7 +20,7 @@ describe User do
 								 reset_password_token sign_in_count 
 								 last_sign_in_ip reputation skill_1 skill_2 
 								 skill_3 cratings rated_comments
-								 rated? rate! comments updates) # feed? rater_id
+								 rated? rate! comments updates ideabinds) # feed? rater_id
 
 		sym_arr.each { |sym| it { should respond_to(sym) } }
 
@@ -279,17 +279,4 @@ describe User do
 			end
 	  end
   end
-
-  describe "comment associations" do
-		before { @user.save }
-
-		let!(:older_comment) do
-			FactoryGirl.create(:comment, user: @user, created_at: 1.day.ago)
-		end
-		let!(:newer_comment) do
-			FactoryGirl.create(:comment, user: @user, created_at: 1.hour.ago)
-		end
-
-		# it "should have the right comments in the right order "
-	end
 end

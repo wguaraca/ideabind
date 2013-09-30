@@ -16,7 +16,7 @@ FactoryGirl.define do
 		sequence(:par_comment_id) { |n| n }
 	
 		
-		content "Lorem Ipsum" + 'a' * 140
+		sequence(:content) { |n| "#{n}" * 140 }
 		user
 
 	end
@@ -25,6 +25,14 @@ FactoryGirl.define do
 		sequence(:title) { |n| "Title #{n}"  }
 		sequence(:description) { |n| "Description #{n}" }
 		user
+		idea
+	end
+
+	factory :idea do
+		sequence(:title) { |n| "Title #{n}"  }
+		sequence(:description) { |n| "Description #{n}" }
+		# owner
+		# user
 	end
 
 	factory :pin do 

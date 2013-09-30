@@ -22,13 +22,16 @@ class User < ActiveRecord::Base
 	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
 										uniqueness: { case_sensitive: false }
 
-
 	has_many :pins, dependent: :destroy
 
+  has_many :ideabinds, foreign_key: 'collaborator_id', class_name: "Ideabind"
+  has_many :collaborated_ideas, through: :ideabinds
   has_many :cratings, foreign_key: 'rater_id', class_name: 'Crating'#, dependent: :destroy
   has_many :rated_comments, through: :cratings
   has_many :comments
   has_many :updates
+  has_many :owned_ideas, class_name: 'Idea', as: :owner
+  
 
   def rated?(comment)
     self.cratings.find_by(rated_comment_id: comment.id)

@@ -5,7 +5,7 @@
 		# default_scope 
 
 		validates :user_id, presence: true
-		validates :content, presence: true, length: { minimum: 140 }
+		validates :content, presence: true, length: { minimum: 140 }, unless: "@parental_deleted"
 		validates :update_id, presence: true
 		# validates :par_comment_id, presence: true
 
@@ -18,6 +18,7 @@
 		has_many :replies, -> { order "rating DESC" }, class_name: 'Comment', foreign_key: 'parent_id'
 		belongs_to :user
 		belongs_to :parent, class_name: 'Comment'
+		belongs_to :update
 
 		
 
@@ -47,8 +48,20 @@
 
 		end
 
+
+
 		def destroy
-			self.replies.length > 0 ? self.content = nil : super
+			# update = Update.where(id: self.update_id)
+			# if update.empty? && self.replies.length > 0
+			# debugger
+			if self.update && !self.replies.empty?
+				@parental_deleted = true
+				self.content = nil			
+				self.save
+			else
+				self.replies.destroy_all
+				super
+			end
 		end
 
 	end
