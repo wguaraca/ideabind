@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130927204602) do
+ActiveRecord::Schema.define(version: 20130930221125) do
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20130927204602) do
     t.integer  "rating"
     t.integer  "user_id"
     t.integer  "idea_id"
+    t.boolean  "about_to_be_destroyed", default: false
   end
 
   add_index "updates", ["created_at"], name: "index_updates_on_created_at"

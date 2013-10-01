@@ -151,6 +151,7 @@ describe Update do
 
 			describe "there should only be one element" do
 				it { expect(update1.comments.length).to eq 1 }
+				# debugger
 			end
 
 			describe "the only element should be comment" do
@@ -174,8 +175,10 @@ describe Update do
 				before do
 					@comment_id = comment.id
 					@reply_id = kid1.id
+					@update_id = update1.id
 					@comments = update1.comments.to_a 
 					@replies = @comments[0].replies.to_a
+
 				end
 
 				describe "comment_id should be comment.id" do
@@ -186,10 +189,12 @@ describe Update do
 					before { update1.destroy }
 					it { expect(@comments).not_to be_empty }
 					it { expect(@replies).not_to be_empty }
+
+					it { expect(Update.where(id: @update_id)).to be_empty }
 						
 					it { expect(Comment.where(id: @comment_id)).to be_empty }		
 					it { expect(Comment.where(id: @reply_id)).to be_empty }
-					
+
 				end
 			end		
 		end

@@ -53,8 +53,12 @@
 		def destroy
 			# update = Update.where(id: self.update_id)
 			# if update.empty? && self.replies.length > 0
-			# debugger
-			if self.update && !self.replies.empty?
+			# debugger 
+
+			if !self.update || self.update.about_to_be_destroyed
+				self.replies.destroy_all
+				super
+			elsif self.update && !self.replies.empty?
 				@parental_deleted = true
 				self.content = nil			
 				self.save

@@ -198,6 +198,8 @@ describe Comment do
 			describe "parent" do
 
 				let(:parent1_id) { parent1.id }
+				let(:kid1_id) { kid1.id }
+				let(:kid2_id) { kid2.id }
 
 				describe "Comment where parent1.id should give us parent1" do
 					it { expect(Comment.where(id:parent1_id).to_a[0]).to eq parent1 }
@@ -214,17 +216,33 @@ describe Comment do
 				describe "destroy method" do
 					before { parent1.destroy }
 
-					describe "shouldn't delete parent1_id" do
-						it { expect(parent1_id).not_to eq nil }
+					it "shouldn't delete parent1_id" do
+					  expect(parent1_id).not_to eq nil 
 					end
 
-					describe "shouldn't delete parent" do
-						it { expect(parent1).to_not eq nil }
+					it "shouldn't delete parent" do
+					  expect(Comment.where(id: parent1_id)).not_to be_empty 
 					end
 					
-					describe "should only delete the contents" do
-						it { expect(Comment.where(id: parent1_id).to_a[0].content).to eq nil }
+					it "should only delete the contents" do
+					  expect(Comment.where(id: parent1_id).to_a[0].content).to eq nil 
 					end
+
+					it "should keep kid1" do
+						expect(Comment.where(id: kid1_id)).not_to be_empty
+					end
+
+   				it "should keep kid2" do
+						expect(Comment.where(id: kid2_id)).not_to be_empty
+					end
+
+					it "should keep kid1 contents" do
+					  expect(Comment.where(id: kid1_id).to_a[0].content).not_to eq nil 
+					end
+
+					it "should keep kid2 contents" do
+					  expect(Comment.where(id: kid2_id).to_a[0].content).not_to eq nil 
+					end				
 				end
 
 				describe "on kid" do
@@ -236,10 +254,7 @@ describe Comment do
 					end
 				end
 			end
-
 		end
-
-		
 	end
 end
 

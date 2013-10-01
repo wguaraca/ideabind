@@ -20,4 +20,11 @@ class Update < ActiveRecord::Base
 	def sort_default_comments
 		self.comments.order("helpfulness DESC, rating DESC")
 	end
+
+	def destroy 
+		self.about_to_be_destroyed = true
+		self.save
+		# self.comments.destroy_all
+		super
+	end
 end

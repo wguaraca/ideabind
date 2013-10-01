@@ -138,7 +138,9 @@ describe User do
 
 	describe "comment rating" do
   	# let(:user) { FactoryGirl.create(:user)}
-  	let(:comment_b) { FactoryGirl.create(:comment) }
+  	let(:comment_b) { FactoryGirl.create(:comment, user: @user) }
+  	# let(:comment_c) { FactoryGirl.create(:comment, user: @user }
+
 
   	describe "upvote nil comment should be illegal" do
   		before { @user.save }
