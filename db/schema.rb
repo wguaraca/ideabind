@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130930221125) do
+ActiveRecord::Schema.define(version: 20131001174157) do
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
@@ -80,6 +80,14 @@ ActiveRecord::Schema.define(version: 20130930221125) do
   add_index "pins", ["user_id", "created_at"], name: "index_pins_on_user_id_and_created_at"
   add_index "pins", ["user_id"], name: "index_pins_on_user_id"
 
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+
   create_table "updates", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -93,6 +101,15 @@ ActiveRecord::Schema.define(version: 20130930221125) do
 
   add_index "updates", ["created_at"], name: "index_updates_on_created_at"
   add_index "updates", ["idea_id"], name: "index_updates_on_idea_id"
+
+  create_table "updatetaggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "update_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "updatetaggings", ["tag_id", "update_id"], name: "index_updatetaggings_on_tag_id_and_update_id", unique: true
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false

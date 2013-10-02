@@ -5,6 +5,9 @@ class Update < ActiveRecord::Base
 	belongs_to :idea
 	has_many :comments, dependent: :destroy
 	has_many :collaborators, class_name: 'User' # should use join table, has_many through
+	has_many :updatetaggings, class_name: 'Updatetagging', foreign_key: 'update_id'
+	has_many :tags, through: :updatetaggings
+
 
 	validates :user_id, presence: true
 	validates :title, presence: true

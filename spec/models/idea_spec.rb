@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Idea do
 	let(:user) { FactoryGirl.create(:user) }
-	# let(:idea) { Idea.create(title: "Learn Flamenco Guitar", description: "Go through Sabicas pieces") }
 	let(:idea) { Idea.create(title: "Learn Flamenco Guitar", description: "Go through Sabicas pieces") }
 
 	before do

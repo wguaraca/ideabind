@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Update do
 
 	sym_arr = %i(user description idea comments title rating
-		user_id)
+		user_id tags updatetaggings)
 	sym_arr.each { |sym| it {should respond_to sym} }
 
 	let(:user) { FactoryGirl.create(:user) }

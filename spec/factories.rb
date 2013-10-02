@@ -35,6 +35,12 @@ FactoryGirl.define do
 		# user
 	end
 
+	factory :tag do
+		sequence(:name) { |n| "Name #{n}"}
+		# update
+		# idea
+	end
+
 	factory :pin do 
 		description "Build the next Facebook"
 		user
