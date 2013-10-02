@@ -5,6 +5,7 @@
 	    <div class="row">
 	      <h1 class="page-header"></h1>
 	    </div>
+        
         <!--1st column-->
         <div class="span3">
         	<!--profile info -->
@@ -15,27 +16,88 @@
 				</h4> 
                 <hr class="">
          	</div>
-         	<!--search projects on Ideabind -->
-         	<form id="#" class="form-inline" method="post" action>
-                    <div class="input-prepend">
-                        <input id="sessionInput" align="center" placeholder= "Search Existing Ideas" type="text" size="70">
-							<button class="btn btn-info" type="submit">Bind</button>
-                    </div>
-            </form>
 
+            <!-- Admin Panel for user -->
+         	<div class="well">
+				<ul class="nav nav-list">       
+          			<li><a href="#"><i class="icon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
+          			<li><a href="#"><i class="icon-comment"></i> Comments <span class="badge badge-info">10</span></a></li>
+					<li><a href="#"><i class="icon-user"></i> Contributor Request</a></li>
+					
+					<!-- Bind a new Idea modal -->
+					<li class="divider"></li>
+						<a class="btn" data-toggle="modal" href="#betaModal">Bind It</a> 
+						<div id="betaModal" class="modal hide fade">
+							<div class="modal-header">
+					            <button class="close" data-dismiss="modal">×</button>
+					            <h3>Idea Description</h3>
+    						</div>
+						<!-- idea creation form -->
+						<div class="modal-body">
+						    <div class="row-fluid">
+						        <div class="span12">
+						            <div class="span6">
+										<form class="form-horizontal">
+						                	<p class="help-block">Idea Name</p>
+						                    	<div class="input-prepend">
+						                        	<span class="add-on">*</span><input class="prependedInput" size="16" type="text">
+						                    	</div>
+						                    <p class="help-block">Location</p>
+						                    	<div class="input-prepend">
+						                        	<span class="add-on">*</span><input class="prependedInput" size="16" type="text">
+						                    	</div>
+						                  	<p class="help-block">Tags</p>
+						                    	<div class="input-prepend">
+						                        	<span class="add-on">*</span><input class="prependedInput" size="16" type="text">
+						                    	</div>
+						                  		<hr>						     
+						            	</form>
+						            </div>
+						        	<div class="span6">
+						            	<form class="form-horizontal">
+						                	<p class="help-block">Description:</p>
+						                	<textarea name="message" id="message" class="input-xlarge span11" rows="4"></textarea>
+						                 <p class="help-block">First Collaborators</p>						   
+										    	<div class="input-prepend">
+										      		<span class="add-on"><i class="icon-envelope"></i></span>
+										      		<input class="span25" id="inputIcon" type="text">
+										    	</div>
+						                    	<hr>
+						                    	<div class="help-block">
+						                        	<button type="submit" class="btn btn-large btn-info">Create </button>
+						                    	</div>
+
+						            	</form>
+						        	</div>
+						    	</div>
+							</div>		
+						</div>
+				</ul>
+			</div>
+             
             <!-- widget for tags used to create projects -->
             <!-- We can create more widgets if we need go to show more information or route users to certain pages -->
 
             <div class="well">
-            	<h4>Popular Categories</h4>
-            		<div class= "row">	            				
-            				<ul class="list">
-            					<a href="#">Economics</a>
-                    			<a href="#">Brown</a>
-                    			<a href="#">University of Richmond</a>
-                    			<a href="#">Poetry</a>
-                    		</ul>
-              		</div>
+            	<h4>Popular Tags</h4> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a>
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            	<p>
+            	<!--search projects on Ideabind -->
+            	<form method="get" action="/" class="form-inline" >
+      				<input name="q" class="span2" type="text"  placeholder="Search Ideas" >
+      				<button type="submit" class="btn btn-primary"> <i class="icon-search icon-white"></i></button>
+    			</form>
             </div>  
         </div>
         
@@ -44,13 +106,23 @@
 	        <div class="span4">
 	        	<div class="col-lg-6 col-md-6 portfolio-item">
 	          		<a href="#project-one"><img class="img-responsive" src="http://placehold.it/700x400"></a>
-	          		<h3><a href="#project-one">Project One</a></h3>
+				    <p>
+				    	 <i class="icon-user"></i> <a href="#">Wilson</a> 
+				     	| <i class="icon-comment"></i> <a href="#">3 Comments</a>
+				       	| <i class="icon-share"></i> <a href="#">39 Shares</a>
+					</p>
+	          		<h3><a href="#project-one">Idea One</a></h3>
 	          		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
 	        	</div>
 
 	        	<div class="col-lg-6 col-md-6 portfolio-item">
 	          		<a href="#project-two"><img class="img-responsive" src="http://placehold.it/700x400"></a>
-	          		<h3><a href="#project-two">Project Two</a></h3>
+	          		<p>
+				    	 <i class="icon-user"></i> <a href="#">Wilson</a> 
+				     	| <i class="icon-comment"></i> <a href="#">3 Comments</a>
+				       	| <i class="icon-share"></i> <a href="#">39 Shares</a>
+					</p>
+	          		<h3><a href="#project-two">Idea Two</a></h3>
 	          		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
 	        	</div>
 				<!--/scroll to old projects you're currently working on -->
@@ -58,17 +130,28 @@
 				  <li class="previous"><a href="#">&larr; Older</a></li>
 				</ul>
 			</div>             	        
+	        
 	        <!--/3rd column-->
 			<div class="span4">
 				<div class="col-lg-6 col-md-6 portfolio-item">
 	          		<a href="#project-one"><img class="img-responsive" src="http://placehold.it/700x400"></a>
-	          		<h3><a href="#project-one">Project One</a></h3>
+	          		<p>
+				    	 <i class="icon-user"></i> <a href="#">Wilson</a> 
+				     	| <i class="icon-comment"></i> <a href="#">3 Comments</a>
+				       	| <i class="icon-share"></i> <a href="#">39 Shares</a>
+					</p>
+	          		<h3><a href="#project-one">Ideas Three</a></h3>
 	          		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
 	        	</div>
 
-	        	<div class="col-lg-6 col-md-6 portfolio-item">
+	        	<div class="col-lg-6 col-md-6 portfolio-item"
 	          		<a href="#project-two"><img class="img-responsive" src="http://placehold.it/700x400"></a>
-	          		<h3><a href="#project-two">Project Two</a></h3>
+	          		<p>
+				    	 <i class="icon-user"></i> <a href="#">Wilson</a> 
+				     	| <i class="icon-comment"></i> <a href="#">3 Comments</a>
+				       	| <i class="icon-share"></i> <a href="#">39 Shares</a>
+					</p>
+	          		<h3><a href="#project-two">Idea Four</a></h3>
 	          		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
 	        	</div>	
 	        	<!--/scroll to old projects you're currently working on -->
