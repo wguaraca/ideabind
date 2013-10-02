@@ -1,0 +1,58 @@
+<% if user_signed_in? %>
+<!-- Make you include the css for this page in order to get sidebar slider-->
+
+<div id="wrapper">      
+      <!-- Sidebar/ this is wehere the project updates will be listed-->
+      <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-brand"><a href="#">Idea Name</a></li> <!-- this could be where the details of the form show up --> 
+          <li><a href="#">Update 1</a></li> <!-- when a new update is created it will be listed on the sidebar--> 
+          <li><a href="#">Update 2</a></li>
+          <li><a href="#">Update 3</a></li>
+          <li><a href="#">Update 5</a></li>
+        </ul>
+      </div>
+          
+      <!-- Page content/ this most recent update/we want this to be as visible as possible -->
+      <div class="page-header"></div>
+      <div id="page-content-wrapper">
+        <div class="content-header">
+          <h1>
+            <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
+            Update 1
+          </h1>
+        </div>
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset">
+            <div class="row">
+                <a href="#"><img class="img-responsive" src="http://placehold.it/600x400"></a>
+              <h3>Description</h3>
+              <p>140 Character!</p>
+          <!-- Comment Box/ this looks shitty right now but I would love for you to implement that comments modal you've been working on-->
+          <div class="well">
+              <h4>Leave a Comment:</h4>
+                <form role="form">
+                    <div class="form-group">
+                      <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+          </div>
+    </div>  
+        </div>
+        </div>
+        </div>
+</div>
+            
+<% else %>
+
+<div class= "span12 pagination-centered">
+  <div class="hero-unit">
+    <h1>Welcome to IdeaBind</h1>
+      <p> Liberate Your Natural Genius</p>
+      <p>
+        <%= link_to"Sign up Now", new_user_registration_path, class: "btn btn-primary btn-large " %>
+      </p>
+  </div>
+<% end %>
