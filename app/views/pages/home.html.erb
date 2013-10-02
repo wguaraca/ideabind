@@ -1,24 +1,92 @@
 <% if user_signed_in? %>
-	<!-- this is the space where we need to implement our code for the portfolio.  -->
 
-<%= gravatar_for current_user%>
-<p>This is a place holder for our users portfolio page </p>
+<div class="container-fluid">   
+	      <!--Line at the top of page, you can get rid off it if you want-->
+	    <div class="row">
+	      <h1 class="page-header"></h1>
+	    </div>
+        <!--1st column-->
+        <div class="span3">
+        	<!--profile info -->
+            <div id="midCol" data-spy="affix" data-offset-top="250" class="">        
+                 <h4 class="caption"> 
+                 	<%= gravatar_for current_user%>
+					<%= current_user.name%>
+				</h4> 
+                <hr class="">
+         	</div>
+         	<!--search projects on Ideabind -->
+         	<form id="#" class="form-inline" method="post" action>
+                    <div class="input-prepend">
+                        <input id="sessionInput" align="center" placeholder= "Search Existing Ideas" type="text" size="70">
+							<button class="btn btn-info" type="submit">Bind</button>
+                    </div>
+            </form>
 
-<!-- <h1>Welcome! This will be our users portfolio </h1> -->
+            <!-- widget for tags used to create projects -->
+            <!-- We can create more widgets if we need go to show more information or route users to certain pages -->
+
+            <div class="well">
+            	<h4>Popular Categories</h4>
+            		<div class= "row">	            				
+            				<ul class="list">
+            					<a href="#">Economics</a>
+                    			<a href="#">Brown</a>
+                    			<a href="#">University of Richmond</a>
+                    			<a href="#">Poetry</a>
+                    		</ul>
+              		</div>
+            </div>  
+        </div>
+        
+        <!--/2nd column-->
+        <div class="container">
+	        <div class="span4">
+	        	<div class="col-lg-6 col-md-6 portfolio-item">
+	          		<a href="#project-one"><img class="img-responsive" src="http://placehold.it/700x400"></a>
+	          		<h3><a href="#project-one">Project One</a></h3>
+	          		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+	        	</div>
+
+	        	<div class="col-lg-6 col-md-6 portfolio-item">
+	          		<a href="#project-two"><img class="img-responsive" src="http://placehold.it/700x400"></a>
+	          		<h3><a href="#project-two">Project Two</a></h3>
+	          		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+	        	</div>
+				<!--/scroll to old projects you're currently working on -->
+				<ul class="pager">
+				  <li class="previous"><a href="#">&larr; Older</a></li>
+				</ul>
+			</div>             	        
+	        <!--/3rd column-->
+			<div class="span4">
+				<div class="col-lg-6 col-md-6 portfolio-item">
+	          		<a href="#project-one"><img class="img-responsive" src="http://placehold.it/700x400"></a>
+	          		<h3><a href="#project-one">Project One</a></h3>
+	          		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+	        	</div>
+
+	        	<div class="col-lg-6 col-md-6 portfolio-item">
+	          		<a href="#project-two"><img class="img-responsive" src="http://placehold.it/700x400"></a>
+	          		<h3><a href="#project-two">Project Two</a></h3>
+	          		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+	        	</div>	
+	        	<!--/scroll to old projects you're currently working on -->
+				<ul class="pager">
+  					<li class="next"><a href="#">Newer &rarr;</a></li>
+				</ul>
+			</div>
+		</container>
+</div>
+
 <% else %>
 
 <div class= "span12 pagination-centered">
 	<div class="hero-unit">
-
 		<h1>Welcome to IdeaBind</h1>
-		<p>
-			Build your Portfolio, one challenge at a time: 
-			<%= link_to"Browse Challenges", "#" %>
-		</p>
-		<p>
-			<%= link_to"Sign up Now", new_user_registration_path, class: "btn btn-primary btn-large " %>
-		</p>
+			<p> Liberate Your Natural Genius</p>
+			<p>
+				<%= link_to"Sign up Now", new_user_registration_path, class: "btn btn-primary btn-large " %>
+			</p>
 	</div>
-</div>
-
 <% end %>

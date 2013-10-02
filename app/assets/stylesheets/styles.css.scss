@@ -20,6 +20,38 @@ body {
 	border: 0; 
 }
 
+/* Removes the default 20px margin and creates some padding space for the indicators and controls */
+.carousel {
+	margin-bottom: 0;
+	padding: 0 40px 30px 40px;
+	}
+
+/* Reposition the controls slightly */
+.carousel-control {
+	left: -12px;
+	}
+
+.carousel-control.right {
+	right: -12px;
+	}
+
+/* Changes the position of the indicators */
+.carousel-indicators {
+	right: 50%;
+	top: auto;
+	bottom: 0px;
+	margin-right: -19px;
+}
+
+/* Changes the colour of the indicators */
+.carousel-indicators li {
+	background: #c0c0c0;
+	}
+
+.carousel-indicators .active {
+	background: #333333;
+	}
+
 .footer {
 
 	margin-top: 50px;
@@ -28,4 +60,24 @@ body {
 		color: $gray;
 	}
 
+}
+
+/* microposts */
+
+.pins {
+	list-style: none;
+	margin: 10px 0 0 0;
+
+	li {
+		padding: 10px 0;
+		border-top: 1px solid #e0e0e0;
+	}	
+}
+
+.content {
+	display: block;
+}
+
+.timestamp {
+	color: $grayLight;
 }
