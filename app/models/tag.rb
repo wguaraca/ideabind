@@ -34,6 +34,21 @@ class Tag < ActiveRecord::Base
 		return arr
 	end
 
+	def self.ideas_similar_to(name)
+		sim_tags = self.similar_to(name)
+		return nil if sim_tags.nil? 
+
+		arr = Array.new() 
+	
+		sim_tags.each do |tag| 
+			tag.ideas.each do |idea|
+				arr << idea
+			end
+		end
+
+		return arr
+	end
+
 	def safe_to_destroy?
 		self.updates.empty? && self.ideas.empty?
 	end

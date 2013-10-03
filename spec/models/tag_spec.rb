@@ -2,9 +2,10 @@ require 'spec_helper'
 
 describe Tag do
 	let(:user) { FactoryGirl.create(:user) }
-	let(:idea) { FactoryGirl.create(:idea, owner: user) }
+	let(:idea) { FactoryGirl.create(:idea, owner_id: user.id) }
+	# let(:idea) { Idea.create(title: 'Falafel', description: 'f' * 140, owner_id: user.id)}
 	let(:update) { FactoryGirl.create(:update, user: user, idea: idea)}
-  let(:tag) { Tag.create(name: "Bunny") }
+  let(:tag) { Tag.create(name: "lol") }
   let(:updatetagging) { update.updatetaggings.create(tag_id: tag.id)}
   let(:ideatagging) { idea.ideataggings.create(tag_id: tag.id)}
 
@@ -103,5 +104,87 @@ describe Tag do
 		  end
 		end
   end
+
+  describe "finding updates" do
+
+		it "should be able to find updates given a tag name" do
+			expect(Tag.find_by_name('lol').updates).to include(update) 
+		end
+
+
+		it "should be able to find tag given partial tag name" do
+			expect(Tag.similar_to('lo')).to include(tag)
+		end
+
+		it "should be able to find tag given partial tag name, regardless of Capitalization" do
+			expect(Tag.similar_to('lO')).to include(tag)
+		end
+
+		it "should be able to find corresponding updates given partial tag name" do
+			expect(Tag.similar_to('lo').to_a[0].updates).to include(update)
+		end
+
+		describe "multiple updates and tags" do
+
+			let(:update1) { FactoryGirl.create(:update, user: user, idea: idea)}
+			let(:tag1) { FactoryGirl.create(:tag, name: "lola")}
+			let(:updatetagging1) { update1.updatetaggings.create(tag_id: tag1.id) }
+
+			let(:update2) { FactoryGirl.create(:update, user: user, idea: idea)}
+			let(:tag2) { FactoryGirl.create(:tag, name: "negative")}
+			let(:updatetagging2) { update1.updatetaggings.create(tag_id: tag2.id) }
+
+
+			before { updatetagging1.save }
+
+			it { expect(update1).to be_valid }
+			it { expect(tag1).to be_valid }
+			it { expect(updatetagging1).to be_valid }
+
+			describe "updates_similar_to should return a list" do
+				it { expect(Tag.updates_similar_to('lo').to_a).to eq [update, update1] }
+			end
+		end
+	end
+
+	describe "finding ideas" do
+		it "should be able to find ideas given a tag name" do
+			expect(Tag.find_by_name('lol').ideas).to include(idea) 
+		end
+
+		it "should be able to find tag given partial tag name" do
+			expect(Tag.similar_to('lo')).to include(tag)
+		end
+
+		it "should be able to find tag given partial tag name, regardless of Capitalization" do
+			expect(Tag.similar_to('lO')).to include(tag)
+		end
+
+		it "should be able to find corresponding ideas given partial tag name" do
+			expect(Tag.similar_to('lo').to_a[0].ideas).to include(idea)
+		end
+
+		describe "multiple ideas and tags" do
+
+			let(:idea1) { FactoryGirl.create(:idea, owner_id: user.id)}
+			let(:tag1) { FactoryGirl.create(:tag, name: "lola")}
+			let(:ideatagging1) { idea1.ideataggings.create(tag_id: tag1.id) }
+
+			let(:idea2) { FactoryGirl.create(:idea, owner_id: user.id)}
+			let(:tag2) { FactoryGirl.create(:tag, name: "negative")}
+			let(:ideatagging2) { idea1.ideataggings.create(tag_id: tag2.id) }
+
+
+			before { ideatagging1.save }
+
+			it { expect(idea1).to be_valid }
+			it { expect(tag1).to be_valid }
+			it { expect(ideatagging1).to be_valid }
+
+			describe "ideas_similar_to should return a list" do
+				it { expect(Tag.ideas_similar_to('lo').to_a).to eq [idea, idea1] }
+			end
+		end
+	end
 end
 

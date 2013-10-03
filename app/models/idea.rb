@@ -4,7 +4,7 @@ class Idea < ActiveRecord::Base
 	has_many :ideabinds, foreign_key: :collaborated_idea_id
 	has_many :collaborators, through: :ideabinds
 	has_many :updates, dependent: :destroy
-	has_many :ideataggings #, class_name: 'Ideatagging' #, foreign_key: 'idea_id'
+	has_many :ideataggings
 	has_many :tags, through: :ideataggings
 
 	belongs_to :owner, class_name: "User"
@@ -12,7 +12,6 @@ class Idea < ActiveRecord::Base
 	attr_accessible :title, :description, :owner_id
 	validates :description, presence: true
 	validates :title, presence: true
-	# validates :updates, presence: true
 	validates :owner_id, presence: true
 
 
@@ -21,5 +20,5 @@ class Idea < ActiveRecord::Base
 		self.rating ||= 0
 	end
 
-	
+
 end

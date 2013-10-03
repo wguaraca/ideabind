@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131002214534) do
+ActiveRecord::Schema.define(version: 20131003005747) do
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20131002214534) do
     t.integer  "collaborated_idea_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "owner",                default: false
   end
 
   add_index "ideabinds", ["collaborator_id", "collaborated_idea_id"], name: "index_ideabinds_on_collaborator_id_and_collaborated_idea_id", unique: true

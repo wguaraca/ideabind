@@ -22,6 +22,7 @@ describe Ideabind do
 
 	it { should respond_to(:collaborator_id) }
 	it { should respond_to(:collaborated_idea_id) }
+	it { should respond_to(:owner?)}
 
 	its(:collaborated_idea) { should eq idea}
 	its(:collaborator)      { should eq user}
