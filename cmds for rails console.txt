@@ -1,0 +1,63 @@
+user1 = User.create(name: "edd", email: "edderic@gmail.com", password: "funnybunny", password_confirmation: "funnybunny")
+
+user2 = User.create(name: "chucky", email: "chucky@gmail.com", password: "funnybunny", password_confirmation: "funnybunny")
+
+comment1 = Comment.create(content: "Lorem Ipsum", update_id: 1)
+
+
+comment2 = Comment.create(content: "Mona Lisa", update_id: 1)
+
+___
+
+comment1 = user1.comments.create(content: 'a'*140, update_id: 1)
+comment2 = user1.comments.create(content: 'b'*140, update_id: 1)
+comment3 = user1.comments.create(content: 'c'*140, update_id: 1)
+
+rel = user1.cratings.create!(rated_comment_id: comment.id)
+
+user1.rate!(comment, "up")
+user2.rate!(comment, "up")
+
+user1.cratings.find_by(rated_comment_id:comment.id)
+user2.cratings.find_by(rated_comment_id:comment.id)
+
+____
+
+Ideas:
+
+idea = Idea.new(title: "funny", description: "bunny", owner_id: user1.id)
+idea.owner = user1
+idea.collaborators << user1
+idea.updates << update
+___
+
+Updates:
+
+update1 = user1.updates.create(title: "Me playing guitar", description: "The Most Evolved by John H. Clarke", idea_id: idea.id)
+update1.idea = idea
+
+update2 = user1.updates.create(title: "Me learning tennis", description: "Backhand practice", idea_id: idea.id)
+
+update1 = user.updates.create()
+
+___
+
+
+___
+Tags:
+
+tag1 = Tag.create(name:"lol")
+tag2 = Tag.create(name:"lola")
+
+____
+Updatetaggings:
+
+updatetag1 = update1.updatetaggings.create(tag_id: tag1.id)
+updatetag2 = update2.updatetaggings.create(tag_id: tag1.id)
+
+Tag.updates_similar_to('lo')
+
+____
+Ideataggings:
+
+ideatag1 = idea.ideataggings.create(tag_id: tag1.id)

@@ -51,7 +51,10 @@ describe "Pages" do
 
   describe "About page" do
     before { visit about_path }
-
+    
+    it { should have_selector('h5', text: "Wilson Guaraca")}
+    it { should have_selector('h5', text: "Allen Mack")}
+    it { should have_selector('h5', text: "Sam Peprah")}
     it { should have_selector('h5', text: "Edderic Ugaddan")}
     it_should_behave_like "all static pages"
   end
