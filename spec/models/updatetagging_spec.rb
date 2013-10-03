@@ -65,6 +65,11 @@ describe Updatetagging do
 			let(:tag1) { FactoryGirl.create(:tag, name: "lola")}
 			let(:updatetagging1) { update1.updatetaggings.create(tag_id: tag1.id) }
 
+			let(:update2) { FactoryGirl.create(:update, user: user, idea: idea)}
+			let(:tag2) { FactoryGirl.create(:tag, name: "negative")}
+			let(:updatetagging2) { update1.updatetaggings.create(tag_id: tag2.id) }
+
+
 			before { updatetagging1.save }
 
 			it { expect(update1).to be_valid }

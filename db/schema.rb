@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131001174157) do
+ActiveRecord::Schema.define(version: 20131002214534) do
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
@@ -65,6 +65,17 @@ ActiveRecord::Schema.define(version: 20131001174157) do
 
   add_index "ideas", ["owner_id"], name: "index_ideas_on_owner_id"
   add_index "ideas", ["rating", "created_at"], name: "index_ideas_on_rating_and_created_at"
+
+  create_table "ideataggings", force: true do |t|
+    t.integer  "idea_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ideataggings", ["idea_id", "tag_id"], name: "index_ideataggings_on_idea_id_and_tag_id", unique: true
+  add_index "ideataggings", ["idea_id"], name: "index_ideataggings_on_idea_id"
+  add_index "ideataggings", ["tag_id"], name: "index_ideataggings_on_tag_id"
 
   create_table "pins", force: true do |t|
     t.string   "description"

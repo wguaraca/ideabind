@@ -15,9 +15,15 @@ describe Idea do
 
 	subject{ idea }
 
-	sym_arr = %i(owner collaborators updates rating 
-		title description)
-	sym_arr.each { |sym| it { should respond_to sym} }
+	it { should respond_to :owner }
+	it { should respond_to :collaborators }
+	it { should respond_to :updates }
+	it { should respond_to :rating }
+	it { should respond_to :title }
+	it { should respond_to :description }
+	it { should respond_to :ideataggings }
+	it { should respond_to :tags }
+
 
 	it { should be_valid }
 	it { expect(user).to be_valid }

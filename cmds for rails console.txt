@@ -50,7 +50,14 @@ tag1 = Tag.create(name:"lol")
 tag2 = Tag.create(name:"lola")
 
 ____
+Updatetaggings:
+
 updatetag1 = update1.updatetaggings.create(tag_id: tag1.id)
 updatetag2 = update2.updatetaggings.create(tag_id: tag1.id)
 
 Tag.updates_similar_to('lo')
+
+____
+Ideataggings:
+
+ideatag1 = idea.ideataggings.create(tag_id: tag1.id)
