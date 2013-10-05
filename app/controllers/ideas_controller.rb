@@ -29,6 +29,10 @@ class IdeasController < ApplicationController
 		upd_id = params[:update_id] 
 		upd_id ||= @idea.updates.first
 		@update_to_show = Update.find(upd_id)
+		respond_to do |format|
+			format.html {}
+			format.js {}
+		end
 		# redirect_to @idea
 	end
 
