@@ -44,7 +44,7 @@
           <% @updates = Update.where(idea_id: @idea.id ).to_a%>
           <% @updates.each do |update| %></a></li>
 
-          <li><a href="#"><%= update.title %> <%= time_ago_in_words(update.created_at)%>  </li>
+          <li><%= link_to update.title, '#' %> <%= time_ago_in_words(update.created_at)%>  </li>
           <% end %>
 
         </ul>
