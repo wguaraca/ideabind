@@ -28,7 +28,12 @@ class IdeasController < ApplicationController
 		@update = Update.new()
 		upd_id = params[:update_id] 
 		upd_id ||= @idea.updates.first
-		@update_to_show = Update.find(upd_id)
+
+		if upd_id.nil?
+			@update_to_show = nil
+		else
+			@update_to_show = Update.find(upd_id)
+		end
 		respond_to do |format|
 			format.html {}
 			format.js {}

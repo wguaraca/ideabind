@@ -18,9 +18,20 @@
       <h4>Leave a Comment:</h4>
       <form role="form">
         <div class="form-group">
-          <textarea class="form-control" rows="3"></textarea>
+          <!-- <textarea class="form-control" rows="3"></textarea> -->
+          <% @comment = Comment.new() %>
+          <%= form_for [idea, update, @comment], url: 'idea_update_comments' do |f| %>
+          <%= f.text_area :content %>
+          <%= f.submit "Comment" %>
+          <% end %>
+
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+        <% update.sort_default_comments.each do |parental| %>
+
+        <%= parental.content %>
+        <% end %>
+        
       </form>
       </div>
     </div>

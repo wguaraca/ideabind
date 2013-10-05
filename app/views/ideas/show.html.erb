@@ -49,9 +49,11 @@
 
         </ul>
       </div>
-          
+          <%= @idea.id %>
       <div class="update_partial">
-        <%= render partial: 'updates/update', locals: { update: @update_to_show } %>
+        <%  if !@update_to_show.nil?  %>
+        <%= render partial: 'updates/update', locals: { idea: @idea, update: @update_to_show } %>
+        <% end %>
       </div>
     </div>
   </div>

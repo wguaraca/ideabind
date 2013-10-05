@@ -3,7 +3,10 @@ Omrails::Application.routes.draw do
   get "profile/show"
   resources :pins
   resources :ideas do
-    resources :updates 
+    resources :updates do
+      resources :comments 
+
+    end
   end
 
   
