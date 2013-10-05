@@ -44,14 +44,14 @@
           <% @updates = Update.where(idea_id: @idea.id ).to_a%>
           <% @updates.each do |update| %></a></li>
 
-          <li><%= link_to update.title, '#' %> <%= time_ago_in_words(update.created_at)%>  </li>
+          <li><%= link_to update.title, controller: "ideas", action: 'show', idea_id: @idea.id, update_id: update.id %> <%= time_ago_in_words(update.created_at)%>  </li>
           <% end %>
 
         </ul>
       </div>
           
-
-      <%= render partial: 'updates/update', locals: { update: @updates.first } %>
+      
+      <%= render partial: 'updates/update', locals: { update: @update_to_show } %>
     </div>
   </div>
 </div>

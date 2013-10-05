@@ -14,6 +14,13 @@ class UpdatesController < ApplicationController
 		end
 	end
 
+	def show
+		debugger
+		@idea = Idea.find(params[:idea_id])
+		@update_to_show = Update.find(params[:update_id])
+		redirect_to @idea
+	end
+
 	private
 
 	def update_params

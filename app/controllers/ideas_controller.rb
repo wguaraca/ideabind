@@ -26,6 +26,9 @@ class IdeasController < ApplicationController
 	def show
 		@idea = Idea.find(params[:id])  # Hmmm?
 		@update = Update.new()
+		upd_id = params[:update_id] 
+		upd_id ||= @idea.updates.first
+		@update_to_show = Update.find(upd_id)
 		# redirect_to @idea
 	end
 
