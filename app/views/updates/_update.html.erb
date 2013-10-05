@@ -1,0 +1,30 @@
+<!-- Page content/ this most recent update/we want this to be as visible as possible -->
+<div class="page-header"></div>
+<div id="page-content-wrapper">
+  <div class="content-header">
+    <h1>
+      <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
+      <%= update.title %>
+    </h1>
+  </div>
+  <!-- Keep all page content within the page-content inset div! -->
+  <div class="page-content inset">
+    <div class="row">
+      <a href="#"><img class="img-responsive" src="http://placehold.it/600x400"></a>
+      <h3>Description</h3>
+      <p>(140 Character!) <%= update.description %></p>
+    <!-- Comment Box/ this looks shitty right now but I would love for you to implement that comments modal you've been working on-->
+    <div class="well">
+      <h4>Leave a Comment:</h4>
+      <form role="form">
+        <div class="form-group">
+          <textarea class="form-control" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      </div>
+    </div>
+  </div>  
+
+
+</div>

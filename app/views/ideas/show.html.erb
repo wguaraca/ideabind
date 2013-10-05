@@ -1,0 +1,69 @@
+<% if user_signed_in? %>
+<!-- Make you include the css for this page in order to get sidebar slider-->
+
+
+ <div id="betaModal" class="modal hide fade">
+    <div class="modal-header">
+      <button class="close" data-dismiss="modal">×</button>
+      <h3>Update Description</h3>
+    </div>
+  <!-- update creation form -->
+    <div class="modal-body">
+    
+      <% @update = Update.new %>
+      
+      <%= form_for([@idea, @update]) do |f| %>
+        <div class="form-horizontal" %>
+          <%= render partial: "shared/textfield", 
+                      locals: { label: :title, field: :title, f: f }  %>
+
+          <%= f.label :description %>
+          <%= f.text_area :description %>
+          <%= f.submit "Create"  %>
+        </div>
+
+      <% end %>
+        
+      
+   
+    </div>    
+  </div>
+<div id="wrapper">      
+
+
+
+      <!-- Sidebar/ this is wehere the project updates will be listed-->
+      <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-brand"><%= link_to @idea.title %></a></li> <!-- this could be where the details of the form show up --> 
+
+          <!-- <li class="sidebar"><a href="#">Description: <%= @idea.description %></a></li>  -->
+          <!-- <li class="sidebar"><a href="#">Location: <%= @idea.location %></a></li>  -->
+          <li><a data-toggle="modal" href="#betaModal">add update</a></li>
+
+          <% @updates = Update.where(idea_id: @idea.id ).to_a%>
+          <% @updates.each do |update| %></a></li>
+
+          <li><a href="#"><%= update.title %> <%= time_ago_in_words(update.created_at)%>  </li>
+          <% end %>
+
+        </ul>
+      </div>
+          
+
+      <%= render partial: 'updates/update', locals: { update: @updates.first } %>
+    </div>
+  </div>
+</div>
+            
+<% else %>
+
+<div class= "span12 pagination-centered">
+  <div class="hero-unit">
+    <h1>Welcome to ideabind</h1>
+      <p> Liberate Your Natural Genius</p>
+      <p>
+        <%= link_to"Sign up Now", new_user_registration_path, class: "btn btn-primary btn-large " %>
+      </p>
+  </div>
+<% end %>

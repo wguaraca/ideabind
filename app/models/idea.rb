@@ -9,10 +9,11 @@ class Idea < ActiveRecord::Base
 
 	belongs_to :owner, class_name: "User"
 
-	attr_accessible :title, :description, :owner_id
+	attr_accessible :title, :description, :owner_id, :location, :tags_tmp, :collaborators_tmp
 	validates :description, presence: true
 	validates :title, presence: true
 	validates :owner_id, presence: true
+	validates :location, presence: true
 
 
 
@@ -20,5 +21,15 @@ class Idea < ActiveRecord::Base
 		self.rating ||= 0
 	end
 
+	def build_ideatags
+		tags_arr = self.tags_tmp.split("\s")
+		tags_arr.each do |tag|
+			tag_model = Tag.find_by_name(tag)
+			tag_model ||= Tag.create(name: tag)
+			
+			ideatagging = self.ideataggings.create(tag_id: tag_model.id)
+			ideatagging.save
 
+		end
+	end
 end

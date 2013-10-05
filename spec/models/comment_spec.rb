@@ -3,11 +3,12 @@ require 'spec_helper'
 
 describe Comment do
 	let(:user) { FactoryGirl.create(:user)}
-	let(:idea) { Idea.create(description: 'funny' *23, title:'bunny', owner_id: user.id)}  # take out owner_id from attr_accessible
+	let(:idea) { Idea.create(description: 'funny' *23, title:'bunny', location: "hahaland", owner_id: user.id)}  # take out owner_id from attr_accessible
 	let(:ideabind) { user.ideabinds.create(collaborated_idea_id: idea.id) }
 	let(:update) { user.updates.create(description: 'b'*140, title: "poopa", idea_id: idea.id) }
 	let(:comment) { user.comments.create(content: 'a' * 141, update_id: update.id) }
 
+	# before { idea.owner_id = user.id }
 	
 	subject { comment }
 

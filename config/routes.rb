@@ -2,6 +2,13 @@ Omrails::Application.routes.draw do
   
   get "profile/show"
   resources :pins
+  resources :ideas do
+    resources :updates 
+  end
+
+  
+  
+
   devise_for :users
 
   get 'profile', to: 'profile#show', as: 'profile'

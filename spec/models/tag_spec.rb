@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Tag do
 	let(:user) { FactoryGirl.create(:user) }
-	let(:idea) { FactoryGirl.create(:idea, owner_id: user.id) }
+	let(:idea) { FactoryGirl.create(:idea, owner_id: user.id, location: "Santa Barbara, CA") }
 	# let(:idea) { Idea.create(title: 'Falafel', description: 'f' * 140, owner_id: user.id)}
 	let(:update) { FactoryGirl.create(:update, user: user, idea: idea)}
   let(:tag) { Tag.create(name: "lol") }
@@ -166,11 +166,11 @@ describe Tag do
 
 		describe "multiple ideas and tags" do
 
-			let(:idea1) { FactoryGirl.create(:idea, owner_id: user.id)}
+			let(:idea1) { FactoryGirl.create(:idea, owner_id: user.id, location: "Manila, Philippines")}
 			let(:tag1) { FactoryGirl.create(:tag, name: "lola")}
 			let(:ideatagging1) { idea1.ideataggings.create(tag_id: tag1.id) }
 
-			let(:idea2) { FactoryGirl.create(:idea, owner_id: user.id)}
+			let(:idea2) { FactoryGirl.create(:idea, owner_id: user.id, location: "Manila, Philippines")}
 			let(:tag2) { FactoryGirl.create(:tag, name: "negative")}
 			let(:ideatagging2) { idea1.ideataggings.create(tag_id: tag2.id) }
 

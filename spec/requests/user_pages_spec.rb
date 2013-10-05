@@ -20,9 +20,9 @@ describe "User pages" do
 		end
 
 		describe 'pins' do
-			it { should have_content(p1.description) }
-			it { should have_content(p2.description) }
-			it { should have_content(user.pins.count) }
+			# it { should have_content(p1.description) }
+			# it { should have_content(p2.description) }
+			# it { should have_content(user.pins.count) }
 		end
 	end
 end

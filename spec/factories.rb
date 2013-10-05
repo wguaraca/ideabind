@@ -31,6 +31,7 @@ FactoryGirl.define do
 	factory :idea do
 		sequence(:title) { |n| "Title #{n}"  }
 		sequence(:description) { |n| "Description #{n}" }
+		sequence(:location) { |n| "Location #{n}"}
 		owner_id 1
 		# user
 	end

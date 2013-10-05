@@ -188,7 +188,7 @@ body {
 #wrapper.active #sidebar-wrapper {
   left: 250px;
   width: 250px;
-  transition: all 0.4s ease 0s;
+  /*transition: all 0.4s ease 0s;*/
 }
 
 #menu-toggle {
@@ -200,4 +200,17 @@ body {
 }
 
 }
+
+input.create_btn {
+  margin-top: 8px;
+}
+
+
+.error_message {
+  color: red;
+}
+
+
+
+
 

@@ -6,7 +6,7 @@
 	  	           	request.url == edit_user_registration_url) 
 						  		current_user.name 
 	  					  else 
-	  					  	"IdeaBind"
+	  					  	"ideabind"
 	  					  end
 	  					  		%></title>
 	  <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -21,6 +21,7 @@
 				<% end %>
 				<%= yield %> 
 				<%= render 'layouts/footer' %>
+				<%= debug(params) if Rails.env.development? %>
 			</div>
 	</body>
 </html>

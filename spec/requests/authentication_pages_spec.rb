@@ -2,7 +2,7 @@ require 'spec_helper'
 
 shared_examples_for "all pages" do
 
-	it { should have_link "IdeaBind" }
+	it { should have_link "ideabind" }
 	it { should have_link "Home"}
 	it { should have_link "About"}
 	it { should have_link "Awesome Team"}
@@ -26,7 +26,6 @@ describe "Authentication" do
 
 	it { should have_link "Sign up Now"}
 	it { should have_link "Login"}
-	it { should have_link "Browse Challenges"}
 	it_should_behave_like "all pages"
 
 	describe "signin" do 

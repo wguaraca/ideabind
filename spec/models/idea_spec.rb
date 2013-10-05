@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe Idea do
 	let(:user) { FactoryGirl.create(:user) }
-	let(:idea) { Idea.create(title: "Learn Flamenco Guitar", description: "Go through Sabicas pieces") }
+	let(:idea) { Idea.create(title: "Learn Flamenco Guitar", 
+		description: "Go through Sabicas pieces", 
+		location: "Santa Barbara, CA") }
 
 	before do
 		idea.owner = user
@@ -11,25 +13,24 @@ describe Idea do
 		idea.save
 	end
 
-	
-
 	subject{ idea }
 
 	it { should respond_to :owner }
 	it { should respond_to :collaborators }
+	it { should respond_to :location }
 	it { should respond_to :updates }
 	it { should respond_to :rating }
 	it { should respond_to :title }
 	it { should respond_to :description }
 	it { should respond_to :ideataggings }
 	it { should respond_to :tags }
-
+	it { should respond_to :tags_tmp }   # Used for string hack!
+	it { should respond_to :build_ideatags }
+	it { should respond_to :collaborators_tmp }
 
 	it { should be_valid }
 	it { expect(user).to be_valid }
-	
 	it { expect(idea).to be_valid }
-
 
 	describe "owner_id should be user id" do
 		it { expect(idea.owner_id).to eq user.id }
@@ -40,7 +41,7 @@ describe Idea do
 	end
 
 	describe "user's idea should be the idea" do
-		it { expect(user.owned_ideas.to_a[0]).to eq idea}
+		it { expect(user.owned_ideas.to_a[0]).to eq idea }
 	end
 
 	describe "user should be a collaborator" do
@@ -65,6 +66,11 @@ describe Idea do
 
 		describe "rating should default to 0" do
 			it { expect(idea.rating).to eq 0 }
+		end
+
+		describe "location should exist" do
+			before { idea.location = nil }
+			it { should_not be_valid }
 		end
 	end
 
@@ -132,4 +138,66 @@ describe Idea do
 		end
 	end
 
+	describe "helper methods" do
+		describe "build_ideatags" do
+			before do 
+				idea.tags_tmp = "follow money guns" 
+				idea.build_ideatags
+			end
+
+			describe "should create the tags" do
+				let(:arr) { Array.new }
+				before { idea.tags.to_a.each { |tag| arr << tag.name } }
+				
+				it "should include name 'follow'" do
+					expect(arr).to include("follow")
+				end
+
+				it "should include name 'money'" do
+					expect(arr).to include("money")
+				end
+
+				it "should include name 'guns'" do
+					expect(arr).to include("guns")
+				end
+
+				describe "tag count should be 3" do
+					it { expect(Tag.count).to eq 3 }
+				end
+
+				describe "create new idea and replicate a tag" do
+					let(:idea1) { Idea.create(title: "Roller Skating in the Park", 
+																	description: "Skill development", 
+																	location: "Santa Barbara, CA") }
+					let(:arr1) { Array.new }
+
+					before do
+						idea1.owner_id = user.id
+						idea1.tags_tmp = "follow sun gun"
+						idea1.save
+						idea1.build_ideatags
+						idea1.tags.to_a.each { |tag| arr1 << tag.name } 
+					end
+
+					describe "should create two new tags" do
+						it "should include name 'follow'" do
+							expect(arr1).to include("follow")
+						end
+
+						it "should include name 'sun'" do
+							expect(arr1).to include("sun")
+						end
+
+						it "should include name 'gun'" do
+							expect(arr1).to include("gun")
+						end
+
+						describe "tag count should be 5" do
+							it { expect(Tag.count).to eq 5 }
+						end
+					end
+				end
+			end
+		end
+	end
 end

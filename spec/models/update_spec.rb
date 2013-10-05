@@ -199,4 +199,17 @@ describe Update do
 			end		
 		end
 	end
+
+	describe "updates should be organized by creation date" do
+		let(:idea1) { FactoryGirl.build(:idea) }
+		let(:update1) { FactoryGirl.create(:update, user: user, idea: idea1)}
+		let(:update2) { FactoryGirl.create(:update, user: user, idea: idea1)}
+
+		before do
+			update1.created_at = 1.day.ago
+			update2.created_at = 1.hour.ago
+		end
+
+		it { expect(Update.where(idea_id: idea1.id).to_a).to eq [update2, update1]}
+	end
 end

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Ideabind do
   
   let(:user) { FactoryGirl.create(:user) }
-  let(:idea) { Idea.create(title: "Learn Flamenco Guitar", description: "Go through Sabicas pieces") }
+  let(:idea) { Idea.create(title: "Learn Flamenco Guitar", description: "Go through Sabicas pieces", location: "Hillside") }
   let(:collaborator_to_idea_rel) { user.ideabinds.create(collaborated_idea_id: idea.id)}
 
 	before do

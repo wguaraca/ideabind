@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131003005747) do
+ActiveRecord::Schema.define(version: 20131004052121) do
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
@@ -62,8 +62,12 @@ ActiveRecord::Schema.define(version: 20131003005747) do
     t.text     "description"
     t.integer  "owner_id"
     t.string   "owner_type"
+    t.string   "location"
+    t.string   "tags_tmp"
+    t.string   "collaborators_tmp"
   end
 
+  add_index "ideas", ["location"], name: "index_ideas_on_location"
   add_index "ideas", ["owner_id"], name: "index_ideas_on_owner_id"
   add_index "ideas", ["rating", "created_at"], name: "index_ideas_on_rating_and_created_at"
 

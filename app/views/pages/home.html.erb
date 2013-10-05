@@ -34,9 +34,16 @@
 						<!-- idea creation form -->
 						<div class="modal-body">
 						    <div class="row-fluid">
-						        <div class="span12">
-						            <div class="span6">
-										<form class="form-horizontal">
+						    	<% @idea = Idea.new %>
+
+						    	
+						    		<div class="form-partial">
+						         	
+						    			<%= render partial: 'shared/ideaform', locals: { obj: @idea } %>
+						        </div>    	 
+						           
+
+      											<!-- <form class="form-horizontal">
 						                	<p class="help-block">Idea Name</p>
 						                    	<div class="input-prepend">
 						                        	<span class="add-on">*</span><input class="prependedInput" size="16" type="text">
@@ -50,12 +57,14 @@
 						                        	<span class="add-on">*</span><input class="prependedInput" size="16" type="text">
 						                    	</div>
 						                  		<hr>						     
-						            	</form>
-						            </div>
-						        	<div class="span6">
+						            	</form> -->
+						          
+						        	<!-- <div class="span6">
 						            	<form class="form-horizontal">
 						                	<p class="help-block">Description:</p>
 						                	<textarea name="message" id="message" class="input-xlarge span11" rows="4"></textarea>
+						                 
+
 						                 <p class="help-block">First Collaborators</p>						   
 										    	<div class="input-prepend">
 										      		<span class="add-on"><i class="icon-envelope"></i></span>
@@ -67,7 +76,7 @@
 						                    	</div>
 
 						            	</form>
-						        	</div>
+						        	</div> -->
 						    	</div>
 							</div>		
 						</div>
@@ -165,7 +174,7 @@
 
 <div class= "span12 pagination-centered">
 	<div class="hero-unit">
-		<h1>Welcome to IdeaBind</h1>
+		<h1>Welcome to ideabind</h1>
 			<p> Liberate Your Natural Genius</p>
 			<p>
 				<%= link_to"Sign up Now", new_user_registration_path, class: "btn btn-primary btn-large " %>
