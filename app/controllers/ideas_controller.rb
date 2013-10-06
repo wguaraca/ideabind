@@ -35,10 +35,10 @@ class IdeasController < ApplicationController
 		else
 			@update_to_show = Update.find(upd_id)
 		end
-		# respond_to do |format|
-		# 	format.html {}
-		# 	format.js {}
-		# end
+		respond_to do |format|
+			format.html {}
+			format.js {}
+		end
 	end
 
 	private

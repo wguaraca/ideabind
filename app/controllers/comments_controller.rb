@@ -14,18 +14,24 @@ class CommentsController < ApplicationController
 		@comment.user_id = current_user.id
 		@comment.idea_id = @idea.id
 		@comment.update_id = @update.id
+		@update_to_show = @update
 		debugger
-		
-		if @comment.save
-			flash[:success] = "Comment was added."
-			@update.comments << @comment
-			@update.save
-			debugger
 
-			redirect_to @idea
-		else
-			flash[:warning] = "Comment failed to save."
-			redirect_to @idea
+		respond_to do |format|
+			if @comment.save
+				flash[:success] = "Comment was added."
+				@update.comments << @comment
+				@update.save
+				debugger
+
+				format.html { redirect_to @idea }
+				format.js {}
+			else
+				flash[:warning] = "Comment failed to save."
+				
+				format.html { redirect_to @idea }
+				format.js {}
+			end
 		end
 	end
 

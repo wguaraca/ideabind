@@ -23,17 +23,10 @@
           - debug @idea
           - debug @update_to_show
           - debug @comment
-          = form_for([@idea, @update_to_show, @comment]) do |f|
+          = form_for([@idea, @update_to_show, @comment], remote: true) do |f|
             = f.text_area :content
             = f.submit "Create"
 
       .update-comments
-        - @update_to_show.sort_default_comments.each do |parental|
-          - if !parental.nil?
-            .comment
-              .comment_name 
-                = parental.user.name
-              .comment_rating
-                = parental.rating
-              .comment_content 
-                = parental.content 
+        = render partial: 'comments/update_comments', locals: { updates: @update_to_show }
+        

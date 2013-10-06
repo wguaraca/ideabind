@@ -210,13 +210,40 @@ input.create_btn {
   color: red;
 }
 
+/* Comments on an update */
+
 .comment {
-  width: 50em;
+  width: 40em;
   margin-top: 2em;
+  padding-top: 0.5em;
   border: solid #cacaca 1px;
   border-radius: 2%;
+  position:relative;
 }
 
+.comment_name {
+  display: inline-block;
+  margin-left: 0.5em;
+}
 
+.comment_reply_btn {
+  display: inline-block;
+}
+
+.comment_created_at {
+  display: inline-block;
+  color: #cacaca;
+}
+
+.comment_content {
+  margin: 1em 2em 2em 2em;
+}
+
+.comment_rating {
+  color: #cacaca;
+  display: inline-block;
+  position: absolute; right: .5em;
+  margin-left:0.5em;
+}
 
 

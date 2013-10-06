@@ -1,0 +1,16 @@
+- update.sort_default_comments.each do |parental|
+  - if !parental.nil?
+    .comment
+      .comment_name 
+        = parental.user.name
+      .comment_created_at
+        = time_ago_in_words(parental.created_at)
+      .comment_reply_btn
+        = link_to 'reply', '#'
+      .comment_rating
+        = link_to 'upv', '#'
+        = link_to 'dwnv', '#'
+        rating:
+        = parental.rating
+      .comment_content 
+        = parental.content 
