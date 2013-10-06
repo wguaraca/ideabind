@@ -72,6 +72,10 @@ describe Idea do
 			before { idea.location = nil }
 			it { should_not be_valid }
 		end
+
+		describe "collaborators_tmp can't be blank" do
+			before { collaborators_tmp.}
+		end
 	end
 
 	describe "adding an update:" do

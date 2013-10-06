@@ -1,0 +1,39 @@
+/ Page content/ this most recent update/we want this to be as visible as possible
+.page-header
+#page-content-wrapper
+  .content-header
+    %h1
+      %a#menu-toggle.btn.btn-default{href: "#"}
+        %i.icon-reorder
+      = update.title
+  / Keep all page content within the page-content inset div!
+  .page-content.inset
+    .row
+      %a{href: "#"}
+        %img.img-responsive{src: "http://placehold.it/600x400"}/
+      %h3 Description
+      %p
+        (140 Character!) #{update.description}
+      / Comment Box/ this looks shitty right now but I would love for you to implement that comments modal you've been working on
+      .well
+        %h4 Leave a Comment:
+        .form-group
+          / <textarea class="form-control" rows="3">
+          - @comment = Comment.new()
+          - debug @idea
+          - debug @update_to_show
+          - debug @comment
+          = form_for([@idea, @update_to_show, @comment]) do |f|
+            = f.text_area :content
+            = f.submit "Create"
+
+      .update-comments
+        - @update_to_show.sort_default_comments.each do |parental|
+          - if !parental.nil?
+            .comment
+              .comment_name 
+                = parental.user.name
+              .comment_rating
+                = parental.rating
+              .comment_content 
+                = parental.content 

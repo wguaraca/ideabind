@@ -188,7 +188,7 @@ body {
 #wrapper.active #sidebar-wrapper {
   left: 250px;
   width: 250px;
-  /*transition: all 0.4s ease 0s;*/
+  transition: all 0.4s ease 0s;
 }
 
 #menu-toggle {
@@ -210,6 +210,12 @@ input.create_btn {
   color: red;
 }
 
+.comment {
+  width: 50em;
+  margin-top: 2em;
+  border: solid #cacaca 1px;
+  border-radius: 2%;
+}
 
 
 

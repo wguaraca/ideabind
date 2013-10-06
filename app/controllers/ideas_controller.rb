@@ -24,6 +24,7 @@ class IdeasController < ApplicationController
 	end
 
 	def show
+		# debugger
 		@idea = Idea.find(params[:id])  # Hmmm?
 		@update = Update.new()
 		upd_id = params[:update_id] 
@@ -34,11 +35,10 @@ class IdeasController < ApplicationController
 		else
 			@update_to_show = Update.find(upd_id)
 		end
-		respond_to do |format|
-			format.html {}
-			format.js {}
-		end
-		# redirect_to @idea
+		# respond_to do |format|
+		# 	format.html {}
+		# 	format.js {}
+		# end
 	end
 
 	private

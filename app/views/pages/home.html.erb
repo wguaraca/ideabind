@@ -25,61 +25,24 @@
 					
 					<!-- Bind a new Idea modal -->
 					<li class="divider"></li>
-						<a class="btn" data-toggle="modal" href="#betaModal">Bind It</a> 
-						<div id="betaModal" class="modal hide fade">
-							<div class="modal-header">
-					            <button class="close" data-dismiss="modal">×</button>
-					            <h3>Idea Description</h3>
-    						</div>
-						<!-- idea creation form -->
-						<div class="modal-body">
-						    <div class="row-fluid">
-						    	<% @idea = Idea.new %>
-
-						    	
-						    		<div class="form-partial">
-						         	
-						    			<%= render partial: 'shared/ideaform', locals: { obj: @idea } %>
-						        </div>    	 
-						           
-
-      											<!-- <form class="form-horizontal">
-						                	<p class="help-block">Idea Name</p>
-						                    	<div class="input-prepend">
-						                        	<span class="add-on">*</span><input class="prependedInput" size="16" type="text">
-						                    	</div>
-						                    <p class="help-block">Location</p>
-						                    	<div class="input-prepend">
-						                        	<span class="add-on">*</span><input class="prependedInput" size="16" type="text">
-						                    	</div>
-						                  	<p class="help-block">Tags</p>
-						                    	<div class="input-prepend">
-						                        	<span class="add-on">*</span><input class="prependedInput" size="16" type="text">
-						                    	</div>
-						                  		<hr>						     
-						            	</form> -->
-						          
-						        	<!-- <div class="span6">
-						            	<form class="form-horizontal">
-						                	<p class="help-block">Description:</p>
-						                	<textarea name="message" id="message" class="input-xlarge span11" rows="4"></textarea>
-						                 
-
-						                 <p class="help-block">First Collaborators</p>						   
-										    	<div class="input-prepend">
-										      		<span class="add-on"><i class="icon-envelope"></i></span>
-										      		<input class="span25" id="inputIcon" type="text">
-										    	</div>
-						                    	<hr>
-						                    	<div class="help-block">
-						                        	<button type="submit" class="btn btn-large btn-info">Create </button>
-						                    	</div>
-
-						            	</form>
-						        	</div> -->
-						    	</div>
-							</div>		
+					<a class="btn" data-toggle="modal" href="#betaModal">Bind It</a> 
+					<div id="betaModal" class="modal hide fade">
+						<div class="modal-header">
+	            <button class="close" data-dismiss="modal">×</button>
+	            <h3>Idea Description</h3>
 						</div>
+					<!-- idea creation form -->
+						<div class="modal-body">
+				    
+				    	<% @idea = Idea.new %>
+
+			    		<div class="form-partial">
+			    			<%= render partial: 'shared/ideaform', locals: { obj: @idea } %>
+			        </div>    	 
+							
+				   
+						</div>		
+					</div>   <!-- Bind a new model end -->
 				</ul>
 			</div>
              

@@ -16,26 +16,35 @@
     <!-- Comment Box/ this looks shitty right now but I would love for you to implement that comments modal you've been working on-->
     <div class="well">
       <h4>Leave a Comment:</h4>
-      <form role="form">
-        <div class="form-group">
-          <!-- <textarea class="form-control" rows="3"></textarea> -->
-          <% @comment = Comment.new() %>
-          <%= form_for [idea, update, @comment], url: 'idea_update_comments' do |f| %>
-          <%= f.text_area :content %>
-          <%= f.submit "Comment" %>
-          <% end %>
+    
+      <div class="form-group">
+        <!-- <textarea class="form-control" rows="3"></textarea> -->
+                <!-- Create a comment -->
+        <% @comment = Comment.new() %>
+        <% debug @idea %>
+        <% debug @update_to_show %>
+        <% debug @comment %>
 
+
+        <%= form_for([@idea, @update_to_show, @comment]) do |f| %>
+        <%= f.text_area :content %>
+        <%= f.submit "Create" %>
+        <% end %>  
         </div>
         <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-        <% update.sort_default_comments.each do |parental| %>
-
-        <%= parental.content %>
-        <% end %>
         
-      </form>
+        
+
       </div>
     </div>
   </div>  
+  <div class="well update-comments">
+    <% @update_to_show.sort_default_comments.each do |parental| %>
+      <div class="comment">
+        <%= parental.content if !parental.nil?%>
+      </div>
+    <% end %>
+  </div>
 
 
 </div>

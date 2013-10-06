@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131004052121) do
+ActiveRecord::Schema.define(version: 20131006010513) do
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "content"
     t.integer  "rating"
     t.integer  "user_id"
     t.integer  "par_comment_id"
@@ -25,13 +24,15 @@ ActiveRecord::Schema.define(version: 20131004052121) do
     t.integer  "idea_id"
     t.integer  "parent_id"
     t.boolean  "helpfulness",    default: false
+    t.text     "content"
   end
 
   add_index "comments", ["created_at"], name: "index_comments_on_upd_id_and_usr_id_and_com_id_and_created_at"
   add_index "comments", ["helpfulness"], name: "index_comments_on_helpfulness"
   add_index "comments", ["id"], name: "index_comments_on_id", unique: true
-  add_index "comments", ["idea_id", "update_id"], name: "index_comments_on_idea_id_and_update_id", unique: true
+  add_index "comments", ["idea_id"], name: "index_comments_on_idea_id"
   add_index "comments", ["parent_id"], name: "index_comments_on_parent_id"
+  add_index "comments", ["update_id"], name: "index_comments_on_update_id"
   add_index "comments", ["user_id", "update_id", "created_at"], name: "index_comments_on_user_id_and_update_id_and_created_at"
 
   create_table "cratings", force: true do |t|

@@ -1,6 +1,7 @@
 class UpdatesController < ApplicationController
 
 	def create
+		debugger
 		@update = Update.new(update_params)
 		@update.idea_id = params[:idea_id]
 		@update.user_id = current_user.id

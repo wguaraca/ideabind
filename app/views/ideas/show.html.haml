@@ -1,0 +1,45 @@
+- if user_signed_in?
+  #betaModal.modal.hide.fade 
+    .modal-header
+      %button.close{"data-dismiss" => "modal"} ×
+      %h3 Update Description
+    
+    / update creation form
+
+    .modal-body
+      - @update = Update.new
+      = form_for([@idea, @update]) do |f|
+        .form-horizontal
+          =render partial: 'shared/textfield',  locals: { label: :title, field: :title, f: f }
+        
+          =f.label :description
+          =f.text_area :description
+          =f.submit 'Create'
+  #wrapper
+    
+    / Sidebar /project updates
+    
+    #sidebar-wrapper
+      %ul.sidebar-nav
+        %li.sidebar-brand 
+          =link_to @idea.title
+       
+        %li
+          %a{"data-toggle" => "modal", href: "#betaModal"} add update
+        - @updates = Update.where(idea_id: @idea.id ).to_a
+        - @updates.each do |update|
+          %li
+            = link_to update.title, {controller: 'ideas', action: 'show', idea_id: @idea.id, update_id: update.id}
+            = time_ago_in_words(update.created_at)
+    
+    .update_partial
+      - if !@update_to_show.nil?
+        = render partial: 'updates/update', locals: { idea: @idea, update: @update_to_show }
+
+- else
+  .span12.pagination-centered
+    .hero-unit
+      %h1 Welcome to ideabind
+      %p Liberate Your Natural Genius
+      %p
+        = link_to"Sign up Now", new_user_registration_path, class: "btn btn-primary btn-large "
