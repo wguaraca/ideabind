@@ -1,0 +1,146 @@
+<% if user_signed_in? %>
+<div class="container-fluid">   
+	      <!--Line at the top of page, you can get rid off it if you want-->
+	    <div class="row">
+	      <h1 class="page-header"></h1>
+	    </div>
+        
+        <!--1st column-->
+        <div class="span3">
+        	<!--profile info -->
+            <div id="midCol" data-spy="affix" data-offset-top="250" class="">        
+                 <h4 class="caption"> 
+                 	<%= gravatar_for current_user%>
+					<%= current_user.name%>
+				</h4> 
+                <hr class="">
+         	</div>
+
+            <!-- Admin Panel for user -->
+         	<div class="well">
+				<ul class="nav nav-list">       
+          			<li><a href="#"><i class="icon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
+          			<li><a href="#"><i class="icon-comment"></i> Comments <span class="badge badge-info">10</span></a></li>
+					<li><a href="#"><i class="icon-user"></i> Contributor Request</a></li>
+					
+					<!-- Bind a new Idea modal -->
+					<li class="divider"></li>
+					<a class="btn" data-toggle="modal" href="#betaModal">Bind It</a> 
+					<div id="betaModal" class="modal hide fade">
+						<div class="modal-header">
+	            <button class="close" data-dismiss="modal">×</button>
+	            <h3>Idea Description</h3>
+						</div>
+					<!-- idea creation form -->
+						<div class="modal-body">
+				    
+				    	<% @idea = Idea.new %>
+
+			    		<div class="form-partial">
+			    			<%= render partial: 'shared/ideaform', locals: { obj: @idea } %>
+			        </div>    	 
+							
+				   
+						</div>		
+					</div>   <!-- Bind a new model end -->
+				</ul>
+			</div>
+             
+            <!-- widget for tags used to create projects -->
+            <!-- We can create more widgets if we need go to show more information or route users to certain pages -->
+
+            <div class="well">
+            	<h4>Popular Tags</h4> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a>
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            		<a href="#"><span class="label label-info">Test</span></a> 
+            	<p>
+            	<!--search projects on Ideabind -->
+            	<form method="get" action="/" class="form-inline" >
+      				<input name="q" class="span2" type="text"  placeholder="Search Ideas" >
+      				<button type="submit" class="btn btn-primary"> <i class="icon-search icon-white"></i></button>
+    			</form>
+            </div>  
+        </div>
+        
+        <!--/2nd column-->
+        <div class="container">
+	        <div class="span4">
+	        	<div class="col-lg-6 col-md-6 portfolio-item">
+	          		<a href="#project-one"><img class="img-responsive" src="http://placehold.it/700x400"></a>
+				    <p>
+				    	 <i class="icon-user"></i> <a href="#">Wilson</a> 
+				     	| <i class="icon-comment"></i> <a href="#">3 Comments</a>
+				       	| <i class="icon-share"></i> <a href="#">39 Shares</a>
+					</p>
+	          		<h3><a href="#project-one">Idea One</a></h3>
+	          		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+	        	</div>
+
+	        	<div class="col-lg-6 col-md-6 portfolio-item">
+	          		<a href="#project-two"><img class="img-responsive" src="http://placehold.it/700x400"></a>
+	          		<p>
+				    	 <i class="icon-user"></i> <a href="#">Wilson</a> 
+				     	| <i class="icon-comment"></i> <a href="#">3 Comments</a>
+				       	| <i class="icon-share"></i> <a href="#">39 Shares</a>
+					</p>
+	          		<h3><a href="#project-two">Idea Two</a></h3>
+	          		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+	        	</div>
+				<!--/scroll to old projects you're currently working on -->
+				<ul class="pager">
+				  <li class="previous"><a href="#">&larr; Older</a></li>
+				</ul>
+			</div>             	        
+	        
+	        <!--/3rd column-->
+			<div class="span4">
+				<div class="col-lg-6 col-md-6 portfolio-item">
+	          		<a href="#project-one"><img class="img-responsive" src="http://placehold.it/700x400"></a>
+	          		<p>
+				    	 <i class="icon-user"></i> <a href="#">Wilson</a> 
+				     	| <i class="icon-comment"></i> <a href="#">3 Comments</a>
+				       	| <i class="icon-share"></i> <a href="#">39 Shares</a>
+					</p>
+	          		<h3><a href="#project-one">Ideas Three</a></h3>
+	          		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+	        	</div>
+
+	        	<div class="col-lg-6 col-md-6 portfolio-item"
+	          		<a href="#project-two"><img class="img-responsive" src="http://placehold.it/700x400"></a>
+	          		<p>
+				    	 <i class="icon-user"></i> <a href="#">Wilson</a> 
+				     	| <i class="icon-comment"></i> <a href="#">3 Comments</a>
+				       	| <i class="icon-share"></i> <a href="#">39 Shares</a>
+					</p>
+	          		<h3><a href="#project-two">Idea Four</a></h3>
+	          		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+	        	</div>	
+	        	<!--/scroll to old projects you're currently working on -->
+				<ul class="pager">
+  					<li class="next"><a href="#">Newer &rarr;</a></li>
+				</ul>
+			</div>
+		</container>
+</div>
+
+<% else %>
+
+<div class= "span12 pagination-centered">
+	<div class="hero-unit">
+		<h1>Welcome to ideabind</h1>
+			<p> Liberate Your Natural Genius</p>
+			<p>
+				<%= link_to"Sign up Now", new_user_registration_path, class: "btn btn-primary btn-large " %>
+			</p>
+	</div>
+<% end %>

@@ -1,0 +1,4 @@
+- @comment = Comment.new unless @comment.new_record?
+= form_for([@idea, @update_to_show, @comment], remote: true) do |f|
+	= f.text_area :content
+	= f.submit "Create", id: 'comment_create'

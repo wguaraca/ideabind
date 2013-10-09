@@ -3,23 +3,19 @@ class IdeasController < ApplicationController
 		@idea = Idea.new(idea_params)
 		@idea.owner_id = current_user.id
 
-		if @idea.save
-			@idea.build_ideatags
-
-			flash[:success] = "Created Idea successfully."
-			redirect_to @idea
-		else
-			flash[:warning] = "Please make sure to provide Title, Location, and Description."
-			# render ideas_path	
-			render "pages/home"
-			# respond_to do |format|
-			  # if @idea.save
-			  # 	format.js { render "shared/valid" }
-			  # else
-		      # format.html { render "pages/home" }
-		      # format.js
-		    # end
-	    # end
+		respond_to do |format|
+			if @idea.save
+				@idea.build_ideatags
+				@update_to_show = nil
+				flash[:success] = "Created Idea successfully."
+				
+				format.html { redirect_to @idea}
+				format.js {}
+			else
+				
+				format.html { render "pages/home" }
+				format.js {}
+		  end
 		end
 	end
 
@@ -30,14 +26,19 @@ class IdeasController < ApplicationController
 		upd_id = params[:update_id] 
 		upd_id ||= @idea.updates.first
 
-		if upd_id.nil?
-			@update_to_show = nil
-		else
-			@update_to_show = Update.find(upd_id)
-		end
 		respond_to do |format|
-			format.html {}
-			format.js {}
+			if upd_id.nil?
+				@update_to_show = nil
+				format.html {}
+				format.js{}
+			else
+				@update_to_show = Update.find(upd_id)
+				format.html {}
+				format.js {}
+			end
+			
+			
+			
 		end
 	end
 

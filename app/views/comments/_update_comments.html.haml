@@ -1,16 +1,15 @@
-- update.sort_default_comments.each do |parental|
-  - if !parental.nil?
+- update.sort_default_comments.each do |comment|
+  - if comment.valid?
     .comment
       .comment_name 
-        = parental.user.name
+        = comment.user.name
       .comment_created_at
-        = time_ago_in_words(parental.created_at)
+        = time_ago_in_words(comment.created_at)
       .comment_reply_btn
         = link_to 'reply', '#'
       .comment_rating
         = link_to 'upv', '#'
         = link_to 'dwnv', '#'
         rating:
-        = parental.rating
-      .comment_content 
-        = parental.content 
+        = comment.rating
+      = render partial: 'comments/content', locals: { id: comment.id, comment: comment}

@@ -1,0 +1,5 @@
+$(".form-partial").html("<%= escape_javascript(render partial: 'shared/ideaform', locals: { obj: @idea } ) %>")
+
+<% if @idea.valid? %>
+	 window.location.href = ('<%=ideas_path%>/<%=@idea.id%>');
+<% end %>

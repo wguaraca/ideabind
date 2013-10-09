@@ -10,7 +10,12 @@ Omrails::Application.routes.draw do
   end
 
   
-  
+  # get 'ideas/updates/comments/expand'
+  # get '/ideas/:idea_id/updates/:update_id/comments/:comment_id/expand/', to: 'comments#expand', as: :expand_full
+  get '/expand/:id', to: 'comments#expand', as: :expand
+  get '/expand/:idea_id/:update_id/:comment', to: 'comments#expand', as: :expand_comment
+  get 'fold/:id', to: 'comments#fold', as: :fold
+    get '/fold/:idea_id/:update_id/:comment', to: 'comments#fold', as: :fold_comment
 
   devise_for :users
 

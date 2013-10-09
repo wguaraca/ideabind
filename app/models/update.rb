@@ -7,7 +7,9 @@ class Update < ActiveRecord::Base
 	has_many :collaborators, class_name: 'User' # should use join table, has_many through
 	has_many :updatetaggings, class_name: 'Updatetagging', foreign_key: 'update_id'
 	has_many :tags, through: :updatetaggings
-	default_scope order:'created_at DESC'
+	default_scope -> { order('created_at DESC')}
+	# scope :default, -> { where(order:'created_at ASC') }
+	# default_scope order:'created_at DESC'
 
 	validates :user_id, presence: true
 	validates :title, presence: true
@@ -21,7 +23,7 @@ class Update < ActiveRecord::Base
 	end
 
 	def sort_default_comments
-		self.comments.order("helpfulness DESC, rating DESC")
+		self.comments.order("helpfulness DESC, rating DESC, created_at DESC")
 	end
 
 	def destroy 

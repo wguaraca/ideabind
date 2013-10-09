@@ -51,37 +51,56 @@ describe Update do
 		end
 	end
 
+	describe "updates ordering" do
+		let(:update_later) { FactoryGirl.create(:update, user: user, idea: idea)}
+		before do 
+			update.created_at = 1.day.ago
+			update_later.created_at = 1.hour.ago
+
+			update_later.save
+			update.save
+		end
+
+		it { expect(idea.updates.to_a).to eq [update_later,update] }
+	end
+
 	describe "comments" do
 		let(:comment1) { FactoryGirl.create(:comment, user: user) }
 		let(:comment2) { FactoryGirl.create(:comment, user: user) }
 		let(:comment3) { FactoryGirl.create(:comment, user: user) }
+		let(:comment4) { FactoryGirl.create(:comment, user: user) }
 
 		before do
 			comment1.rating = 7
 			comment1.helpfulness = true
 			
 			comment2.rating = 10
+			comment2.created_at = 1.day.ago
 			
 			comment3.rating = 3
 			comment3.helpfulness = true
+
+			comment4.rating = 10
+			comment4.created_at = 1.hour.ago
 
 			comment1.save
 			comment2.save
 			comment3.save
 
-			update.comments << [comment1, comment2, comment3]
+			update.comments << [comment1, comment2, comment3, comment4]
 		end
 
 		it "comments should be valid" do
 			expect(comment1).to be_valid 
 			expect(comment2).to be_valid 
 			expect(comment3).to be_valid 
+			expect(comment4).to be_valid
 		end
 
-		it "should be ordered by HELPFULNESS and then RATING" do
+		it "should be ordered by HELPFULNESS and then RATING then CREATED_AT" do
 			sorted = update.sort_default_comments.to_a 
 	
-			expect(sorted).to eq [comment1,comment3,comment2] 
+			expect(sorted).to eq [comment1,comment3,comment4,comment2] 
 		end
 
 		describe "destroy update" do

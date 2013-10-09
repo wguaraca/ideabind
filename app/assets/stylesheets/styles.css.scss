@@ -210,10 +210,130 @@ input.create_btn {
   color: red;
 }
 
+/* Create an idea form */
+
+#ideaform {
+  position:relative;
+  top:30px;
+  /*padding-top: 1em;*/
+}
+
+.span12.form {
+  padding-top: 1em;
+}
+
+/*.span6.form {
+  display: inline-block;
+}*/
+
+.help-block {
+  display: block;
+  position: relative;
+  /*top: 1em;*/
+  /*top:2em;*/
+}
+
+.input-prepend-wrap {
+  display:block;
+  position: absolute;
+  top:2em;
+}
+
+.first-collab {
+  position:relative;
+
+}
+
+#inputIcon {
+  position:absolute;
+  left:24px;
+}
+
+.input-prepend {
+  /*width:215px;*/
+  /*display: block;*/
+  margin-bottom: 1em;
+  position: relative;
+  top: -12px;
+}
+
+.partial_textfield {
+  /*position: relative;*/
+  /*display: block;*/
+  margin-bottom: 20px;
+}
+
+input.span25#inputIcon {
+  width:95%;
+  position: absolute;
+}
+
+span.add-on#icon-envelope {
+  position: absolute;
+  left: 4px;
+  /*padding: 20px;*/
+  /*border: 2px solid #cacaca;*/
+  /*z-index: 10;*/
+}
+/*#icon-envelope {*/
+  /*border: 1px solid #cacaca;*/
+  /*border-top-left-radius: 2%;*/
+  /*border-bottom-left-radius: 2%;*/
+  /*border-radius: 5%;*/
+  /*border-bottom: 10px;*/
+  /*padding-top: 2px;*/
+  /*padding-left: 8px;*/
+  /*padding-right:3px;*/
+  /*padding-bottom: 14px;*/
+  /*padding: 3px;*/
+  /*padding-left: 8px;*/
+  /*padding-top: 8px;*/
+  /*position: absolute;*/
+  /*top:5px;*/
+  /*left:4px;*/
+  /*bottom:3px;*/
+/*}*/
+
+span.add-on {
+  position: absolute; 
+  left: 0px;
+  top: 0px;
+}
+
+input.prependedInput {
+  width: 160px;
+  position: absolute; 
+  left: 24px;
+  top: 0px;
+  
+}
+
+.help-block#create{
+  display: block;
+  text-align: center;
+  margin-top: 70px;
+  /*position: relative;*/
+  /*top: 100px;*/
+}
+
+
+p.help-block#first-collab {
+  /*margin-top:10px;*/
+  /*margin-top: 20px;*/
+  /*margin-bottom: 10px;*/
+}
+
+textarea#idea_description {
+  /*width: 210px;*/
+  width: 100%;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
 /* Comments on an update */
 
 .comment {
-  width: 40em;
+  width: 30em;
   margin-top: 2em;
   padding-top: 0.5em;
   border: solid #cacaca 1px;
@@ -236,6 +356,7 @@ input.create_btn {
 }
 
 .comment_content {
+  word-wrap: break-word;
   margin: 1em 2em 2em 2em;
 }
 
@@ -244,6 +365,23 @@ input.create_btn {
   display: inline-block;
   position: absolute; right: .5em;
   margin-left:0.5em;
+}
+
+.comment-expand {
+  font-size:16px;
+}
+
+/*.leave_a_comment {
+  width: 40em;
+}*/
+
+textarea#comment_content {
+  width: 30em;
+  height: 10em;
+}
+
+input#comment_create {
+  display: block;
 }
 
 

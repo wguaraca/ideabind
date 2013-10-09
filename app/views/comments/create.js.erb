@@ -1,1 +1,2 @@
+$("#comment_textarea").html("<%= escape_javascript(render partial: 'comments/create_comment' ) %>")
 $(".update-comments").html("<%= escape_javascript(render partial: 'comments/update_comments', locals: { update: @update_to_show } ) %>")
