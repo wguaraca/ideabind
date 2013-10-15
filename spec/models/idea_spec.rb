@@ -74,7 +74,8 @@ describe Idea do
 		end
 
 		describe "collaborators_tmp can't be blank" do
-			before { collaborators_tmp.}
+			# before { collaborators_tmp.}
+			it "is a pending example"
 		end
 	end
 
